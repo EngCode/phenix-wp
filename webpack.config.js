@@ -7,7 +7,7 @@ module.exports = {
     mode: "production",
     entry: {
         'px-section': './src/blocks/px-section/index.js',
-        'px-grid': './src/blocks/px-grid/index.js'
+        // 'px-grid': './src/blocks/px-grid/index.js'
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

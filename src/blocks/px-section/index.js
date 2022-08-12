@@ -28,10 +28,11 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
+        const TagName = attributes.tagName;
     
         //===> Render <===//
         return (
-            <div { ...blockProps }>
+            <TagName { ...blockProps }>
                 {attributes.container ? 
                     <div className={attributes.size}>
                         <InnerBlocks.Content />
@@ -39,7 +40,7 @@ registerBlockType(metadata, {
                 : 
                     <InnerBlocks.Content />
                 }
-            </div>
+            </TagName>
         );
     }
 });
