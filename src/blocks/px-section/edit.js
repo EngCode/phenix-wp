@@ -24,15 +24,18 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const TagName = attributes.tagName;
 
+    //===> Container Options <===//
+    const container_options = {
+        size : attributes.size,
+        flexbox : attributes.container_flex ? 'flexbox' : '',
+    }
+
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
             <PanelBody title="Section Settings">
-                {/*=== Container ===*/}
-                <ToggleControl label="With Container" checked={attributes.container} onChange={set_container}/>
-
                 {/*=== Component <TagName> ===*/}
                 <SelectControl key="tagName" label="HTML Tag" value={attributes.tagName} onChange={set_tagName} options={[
                     { label: 'Default <div>',  value: 'div' },
@@ -42,29 +45,31 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Header <header>', value: 'header' },
                     { label: 'Footer <footer>', value: 'footer' },
                 ]}/>
-                
-                {/*=== Container Options ===*/}
-                {attributes.container ? <>
-                    {/*=== Container Size ===*/}
-                    <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
-                    
-                    {/*=== Container Size ===*/}
-                    <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
-                        { label: 'Small',  value: 'container-sm' },
-                        { label: 'Medium', value: 'container-md' },
-                        { label: 'Normal', value: 'container' },
-                        { label: 'Large',  value: 'container-xl' },
-                        { label: 'Full Width',  value: 'container-fluid' },
-                    ]}/>
-                </> : null}
+
+                {/*=== Container ===*/}
+                <ToggleControl label="With Container" checked={attributes.container} onChange={set_container}/>
             </PanelBody>
+            {/*=== Container Options ===*/}
+            {attributes.container ? <PanelBody title="Container Settings">
+                {/*=== Container Size ===*/}
+                <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
+                
+                {/*=== Container Size ===*/}
+                <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
+                    { label: 'Small',  value: 'container-sm' },
+                    { label: 'Medium', value: 'container-md' },
+                    { label: 'Normal', value: 'container' },
+                    { label: 'Large',  value: 'container-xl' },
+                    { label: 'Full Width',  value: 'container-fluid' },
+                ]}/>
+            </PanelBody> : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
         <TagName { ...blockProps }>
-            {attributes.container ? 
-                <div className={`${attributes.size}`}>
+            {attributes.container ?
+                <div className={`${container_options.size} ${container_options.flexbox}`}>
                     <InnerBlocks />
                 </div>
             :

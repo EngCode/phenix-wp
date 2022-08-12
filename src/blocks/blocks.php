@@ -21,4 +21,20 @@
 
         add_action('enqueue_block_editor_assets', 'phenix_blocks');
     endif;
+
+    //=====> Disable Unwanted Blocks <=====//
+    if (!function_exists('blocks_remover')) :
+        function blocks_remover($allowed_blocks) {
+            //===> get all the registered blocks <===//
+            $blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+    
+            //===> then disable the next blocks <===//
+            unset( $blocks['core/site-logo'] );
+    
+            //===> return the new list of allowed blocks <===//
+            return array_keys( $blocks );
+        }
+
+        add_filter('allowed_block_types_all', 'blocks_remover');
+    endif;
 ?>

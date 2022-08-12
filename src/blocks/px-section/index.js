@@ -29,12 +29,18 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
-    
+
+        //===> Container Options <===//
+        const container_options = {
+            size : attributes.size,
+            flexbox : attributes.container_flex ? 'flexbox' : '',
+        }
+
         //===> Render <===//
         return (
             <TagName { ...blockProps }>
                 {attributes.container ? 
-                    <div className={attributes.size}>
+                    <div className={`${container_options.size} ${container_options.flexbox}`}>
                         <InnerBlocks.Content />
                     </div>
                 : 

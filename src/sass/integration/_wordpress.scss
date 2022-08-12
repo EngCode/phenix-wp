@@ -69,6 +69,11 @@ body.admin-bar {padding-top: 0!important;}
 }
 
 /*==== Phenix Section ====*/
-.block-editor-page .wp-block-design-px-section {
+.block-editor-block-list__layout .wp-block-design-px-section {
 	outline: 1px dashed rgba(#000, 0.15);
+
+	.rich-text:not(.is-selected) {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
