@@ -6,11 +6,15 @@
 
 //===> Block Data <===//
 import Edit from './edit';
-import Save from './save';
 import metadata from './block.json';
 
 //===> WordPress Modules <===//
-const { registerBlockType } = wp.blocks;
+import { registerBlockType } from '@wordpress/blocks';
+
+import {
+    InnerBlocks,
+    useBlockProps,
+} from '@wordpress/block-editor';
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -20,5 +24,21 @@ registerBlockType(metadata, {
     edit : Edit,
 
     /**===> Block Output <===*/
-    save : Save
+    save : ({ attributes }) => {
+        //===> Get Block Properties <===//
+        const blockProps = useBlockProps.save();
+    
+        //===> Render <===//
+        return (
+            <div { ...blockProps }>
+                {attributes.container ? 
+                    <div className={attributes.size}>
+                        <InnerBlocks.Content />
+                    </div>
+                : 
+                    <InnerBlocks.Content />
+                }
+            </div>
+        );
+    }
 });

@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = {
     ...defaultConfig,
+    mode: "production",
     entry: {
         'px-section': './src/blocks/px-section/index.js',
         'px-grid': './src/blocks/px-grid/index.js'
