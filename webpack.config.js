@@ -10,6 +10,6 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, './assets/gb/'),
-        filename: '/blocks/[name]/index.js'
+        filename: 'blocks/[name]/index.js'
     }
 };

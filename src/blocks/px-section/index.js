@@ -13,7 +13,7 @@ import metadata from './block.json';
 const { registerBlockType } = wp.blocks;
 
 //===> Register Block <===//
-registerBlockType(metadata.name, {
+registerBlockType(metadata, {
     /**===> @see ./edit.js <===*/
     edit: Edit,
 

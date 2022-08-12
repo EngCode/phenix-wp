@@ -26,5 +26,5 @@
         }
     },
 	"textdomain": "phenix",
-	"editorScript": "px-section"
+	"editorScript": "file:./index.js"
 }
