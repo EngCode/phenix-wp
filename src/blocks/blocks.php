@@ -1,31 +1,24 @@
 <?php
     /**
-     * Enqueue scripts of phenix blocks.
+     * Setting Gutenberg for Phenix Blocks
      * @since Phenix WP 1.0
      * @return void
     */
 
-    //=====> Phenix Section <=====//
-    if (!function_exists('phenix_section')) :
-        function phenix_section() {
-            //====> Path <====//
-            $filepath = get_template_directory_uri().'/assets/js/blocks/px-section/index.js';
-            //====> Enqueue <====//
-            wp_enqueue_script('px-section', $filepath, array('wp-blocks', 'wp-element', 'wp-editor'), NULL , true);
+    //=====> Enqueue Phenix Blocks <=====//
+    if (!function_exists('phenix_blocks')) :
+        function phenix_blocks() {
+            //====> Shared Options <====//
+            $blocksPath = get_template_directory_uri().'/assets/js/blocks/';
+            $blocksDependencies = array('wp-blocks', 'wp-element', 'wp-editor');
+
+            //====> Phenix Section <====//
+            wp_enqueue_script('px-section', $blocksPath.'px-section/index.js', $blocksDependencies, NULL , true);
+            
+            //====> Phenix Grid <====//
+            wp_enqueue_script('px-grid', $blocksPath.'px-grid/index.js', $blocksDependencies, NULL , true);
         }
 
-        add_action('enqueue_block_editor_assets', 'phenix_section');
-    endif;
-    
-    //=====> Phenix Grid <=====//
-    if (!function_exists('phenix_grid')) :
-        function phenix_grid() {
-            //====> Path <====//
-            $filepath = get_template_directory_uri().'/assets/js/blocks/px-grid/index.js';
-            //====> Enqueue <====//
-            wp_enqueue_script('px-grid', $filepath, array('wp-blocks', 'wp-element', 'wp-editor'), NULL , true);
-        }
-
-        add_action('enqueue_block_editor_assets', 'phenix_grid');
+        add_action('enqueue_block_editor_assets', 'phenix_blocks');
     endif;
 ?>

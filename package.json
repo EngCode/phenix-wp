@@ -45,11 +45,10 @@
     }
   ],
   "scripts": {
-    "phenix-start": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run wp-blocks\"",
+    "phenix-start": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"",
     "phenix-ts": "pnpx webpack --config typescript.webpack.js --watch",
     "phenix-sass": "pnpx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
-    "wp-blocks": "wp-scripts start",
-    "wp-blocks-build": "wp-scripts build"
+    "phenix-blocks": "wp-scripts start"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",

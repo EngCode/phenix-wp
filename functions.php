@@ -13,8 +13,8 @@
  ** 02 - Phenix Assets
  ** 03 - Phenix Filters
  ** 05 - Multilang Support
- ** 06 - Phenix Optimizer
- ** 07 - Add Phenix Blocks
+ ** 06 - Add Phenix Blocks
+ ** 07 - Phenix Optimizer
 */
 
 //=====> Theme Support <=====//
@@ -143,11 +143,8 @@ if (!function_exists('px__')) {
 	}
 }
 
-//====> Phenix Optimizer <====//
-include( dirname(__FILE__) . '/inc/optimize.php' );
-
 //====> Add Phenix Blocks <====//
 require get_template_directory() . '/src/blocks/blocks.php';
 
-//====> Add block patterns <====//
-// require get_template_directory() . '/inc/block-patterns.php';
+//====> Phenix Optimizer <====//
+include( dirname(__FILE__) . '/inc/optimize.php' );
