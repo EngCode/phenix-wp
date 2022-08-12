@@ -1,10 +1,9 @@
 {
 	"apiVersion": 2,
-	"name": "theme/px-grid",
+	"name": "design/px-grid",
 	"version": "0.1.0",
 	"title": "Phenix Grid",
-	"category": "theme",
-	"icon": "admin-page",
+	"category": "design",
 	"description": "Main Header Block for Phenix Themes.",
 	"supports": {
 		"html": false

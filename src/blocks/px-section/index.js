@@ -14,8 +14,10 @@ const { registerBlockType } = wp.blocks;
 
 //===> Register Block <===//
 registerBlockType(metadata, {
+    icon : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96 384h448V128H96V384zM32 96C14.34 96 0 110.3 0 128v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C64 110.3 49.66 96 32 96zM608 96c-17.66 0-32 14.34-32 32v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C640 110.3 625.7 96 608 96z" /></svg>,
+
     /**===> @see ./edit.js <===*/
-    edit: Edit,
+    edit : Edit,
 
     /**===> Block Output <===*/
     save : Save

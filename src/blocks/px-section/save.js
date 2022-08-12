@@ -1,13 +1,7 @@
 //====> WP Modules <====//
 import {
-    PanelBody,
-    SelectControl,
-    ToggleControl
-} from '@wordpress/components';
-
-import {
-    InspectorControls,
-    useBlockProps
+    InnerBlocks,
+    useBlockProps,
 } from '@wordpress/block-editor';
 
 //====> Edit Mode <====//
@@ -22,7 +16,9 @@ export default function Save({ attributes }) {
                 <div className={attributes.size}>
                     <InnerBlocks.Content />
                 </div>
-            : null}
+            : 
+                <InnerBlocks.Content />
+            }
         </div>
     );
 }

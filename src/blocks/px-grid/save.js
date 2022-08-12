@@ -1,13 +1,7 @@
 //====> WP Modules <====//
 import {
-    PanelBody,
-    SelectControl,
-    ToggleControl
-} from '@wordpress/components';
-
-import {
-    InspectorControls,
-    useBlockProps
+    InnerBlocks,
+    useBlockProps,
 } from '@wordpress/block-editor';
 
 //====> Edit Mode <====//

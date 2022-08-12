@@ -9,7 +9,7 @@ module.exports = {
         'px-grid': './src/blocks/px-grid/index.js'
     },
     output: {
-        path: path.join(__dirname, './assets/gb/'),
+        path: path.join(__dirname, './assets/js/'),
         filename: 'blocks/[name]/index.js'
     }
 };

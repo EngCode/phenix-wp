@@ -17,6 +17,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Settings <===//
     const set_size = size => setAttributes({ size });
     const set_container = container => setAttributes({ container });
+    const set_container_flex = container_flex => setAttributes({ container_flex });
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -30,8 +31,12 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*=== Container ===*/}
                 <ToggleControl label="With Container" checked={attributes.container} onChange={set_container}/>
                 
-                {/*=== Container Size ===*/}
-                {attributes.container ?
+                {/*=== Container Options ===*/}
+                {attributes.container ?<>
+                    {/* Container Size */}
+                    <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
+                    
+                    {/* Container Size */}
                     <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
                         { label: 'Small',  value: 'container-sm' },
                         { label: 'Medium', value: 'container-md' },
@@ -39,7 +44,7 @@ export default function Edit({ attributes, setAttributes }) {
                         { label: 'Large',  value: 'container-xl' },
                         { label: 'Full Width',  value: 'container-fluid' },
                     ]}/>
-                : null}
+                </> : null}
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
@@ -50,7 +55,9 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className={`${attributes.size}`}>
                     <InnerBlocks />
                 </div>
-            : null}
+            :
+                <InnerBlocks />
+            }
         </div>
     </>);
 }
