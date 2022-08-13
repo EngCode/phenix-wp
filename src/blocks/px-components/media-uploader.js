@@ -6,7 +6,7 @@
 
 //===> WordPress Modules <===//
 import {MediaUpload} from '@wordpress/block-editor';
-import {Component} from '@wordpress/components';
+import {Component} from '@wordpress/element';
 
 //===> Media Uploader <===//
 export default class MediaUploader extends Component {

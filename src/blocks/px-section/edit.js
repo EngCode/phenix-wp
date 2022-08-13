@@ -12,6 +12,9 @@ import {
     useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
+//====> Phenix Modules <====//
+import PhenixBackground from '../px-components/px-background';
+
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Settings <===//
@@ -19,6 +22,24 @@ export default function Edit({ attributes, setAttributes }) {
     const set_tagName = tagName => setAttributes({ tagName });
     const set_container = container => setAttributes({ container });
     const set_container_flex = container_flex => setAttributes({ container_flex });
+
+    //===> Set Background <===//
+    const set_background = clicked => {
+        //===> Get Value <===//
+        let button   = clicked.target,
+            current  = attributes.className,
+            oldVal   = attributes.px_background,
+            newValue = button.getAttribute('data-value');
+
+        //===> Remove Previous <===//
+        current = current.replace(oldVal, '');
+
+        //===> Set Value <===//
+        setAttributes({
+            px_background : newValue,
+            className :  `${newValue} ${current}`,
+        });
+    }
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -63,6 +84,10 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Full Width',  value: 'container-fluid' },
                 ]}/>
             </PanelBody> : null}
+            {/*===> Widget Panel <===*/}
+            <PanelBody title="Background Settings" initialOpen={false}>
+                <PhenixBackground onClick={set_background} />
+            </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

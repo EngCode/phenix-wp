@@ -77,3 +77,14 @@ body.admin-bar {padding-top: 0!important;}
 		margin-bottom: 0;
 	}
 }
+
+.block-editor-block-inspector .components-panel__body.is-opened .components-panel__body-title {
+	margin-bottom: 15px;
+	border-bottom: 1px solid rgba(#000, 0.10);
+}
+
+.px-gb-component {
+	.bg-transparent {
+		background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+	}
+}

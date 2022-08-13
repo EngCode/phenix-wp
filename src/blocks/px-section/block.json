@@ -27,6 +27,11 @@
         "size" : {
             "type": "string",
             "default": "container"
+        },
+
+        "px_background" : {
+            "type" : "string",
+            "default" : ""
         }
     },
 	"textdomain": "phenix",
