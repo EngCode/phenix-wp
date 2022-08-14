@@ -84,7 +84,21 @@ body.admin-bar {padding-top: 0!important;}
 }
 
 .px-gb-component {
-	.bg-transparent {
+	.bg-transparent, .bg-inherit {
 		background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+	}
+	
+	.borderd-group .btn:not(:last-child) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+
+	.options-list .px-active {outline: 1px dashed var(--primary-color);}
+
+	.option-control[data-type="button"] .btn {
+		width: 100%;
+		pointer-events: none;
+	}
+
+	.option-control[data-type="button"] input:checked ~ .btn {
+		color: var(--primary-reverse);
+		background-color: var(--primary-color);
 	}
 }

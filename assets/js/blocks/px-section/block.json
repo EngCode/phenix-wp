@@ -25,7 +25,15 @@
       "type": "string",
       "default": "container"
     },
-    "px_background": {
+    "px_bg_type": {
+      "type": "string",
+      "default": "color"
+    },
+    "px_bg": {
+      "type": "string",
+      "default": ""
+    },
+    "px_color": {
       "type": "string",
       "default": ""
     }

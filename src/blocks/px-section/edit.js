@@ -14,6 +14,7 @@ import {
 
 //====> Phenix Modules <====//
 import PhenixBackground from '../px-components/px-background';
+import PhenixColor from '../px-components/px-colors';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -24,20 +25,35 @@ export default function Edit({ attributes, setAttributes }) {
     const set_container_flex = container_flex => setAttributes({ container_flex });
 
     //===> Set Background <===//
-    const set_background = clicked => {
+    const set_background = background => {
         //===> Get Value <===//
-        let button   = clicked.target,
-            current  = attributes.className,
-            oldVal   = attributes.px_background,
-            newValue = button.getAttribute('data-value');
+        let original  = attributes.className.replace('  ', ' '),
+            current   = attributes.px_bg;
+
+        //===> Remove Current Value <===//
+        if (attributes.px_bg) original = original.replace(current, '');
+
+        //===> Set New Value <===//
+        setAttributes({
+            px_bg : background.value,
+            px_bg_type : background.type,
+            className : `${original} ${background.value}`,
+        });
+    }
+
+    //===> Set Color <===//
+    const set_color = color => {
+        //===> Get Value <===//
+        let original = attributes.className.replace('  ', ' '),
+            current  = attributes.px_color;
 
         //===> Remove Previous <===//
-        current = current.replace(oldVal, '');
+        if (current) original = original.replace(current, '');
 
         //===> Set Value <===//
         setAttributes({
-            px_background : newValue,
-            className :  `${newValue} ${current}`,
+            px_color  : color,
+            className : `${original} ${color}`,
         });
     }
 
@@ -73,9 +89,6 @@ export default function Edit({ attributes, setAttributes }) {
             {/*=== Container Options ===*/}
             {attributes.container ? <PanelBody title="Container Settings">
                 {/*=== Container Size ===*/}
-                <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
-                
-                {/*=== Container Size ===*/}
                 <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
                     { label: 'Small',  value: 'container-sm' },
                     { label: 'Medium', value: 'container-md' },
@@ -83,10 +96,17 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Large',  value: 'container-xl' },
                     { label: 'Full Width',  value: 'container-fluid' },
                 ]}/>
+
+                {/*=== Container Size ===*/}
+                <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Background Settings" initialOpen={false}>
-                <PhenixBackground onClick={set_background} />
+                <PhenixBackground onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
+            <PanelBody title="Text Color" initialOpen={false}>
+                <PhenixColor onChange={set_color} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
