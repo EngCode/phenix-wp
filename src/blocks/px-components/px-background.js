@@ -10,6 +10,74 @@ import {Component} from '@wordpress/element';
 
 //===> Phenix Background <===//
 export default class PhenixBackground extends Component {
+    //===> States <===//
+    state = {
+        main : [
+            "bg-transparent",
+            "bg-primary",
+            "bg-secondary",
+            "bg-gray",
+            "bg-dark",
+            "bg-white",
+            "bg-success",
+            "bg-danger",
+            "bg-warning",
+            "bg-info",
+            "bg-alpha-05",
+            "bg-alpha-10",
+            "bg-alpha-25",
+            "bg-alpha-50",
+            "bg-alpha-75",
+        ],
+        offwhite : [
+            "bg-offwhite-primary",
+            "bg-offwhite-secondary",
+            "bg-offwhite-info",
+            "bg-offwhite-success",
+            "bg-ffwhite-danger",
+            "bg-offwhite-warning",
+            "bg-offwhite-smoke",
+            "bg-offwhite-smoke",
+            "bg-offwhite-gray",
+            "bg-offwhite-snow",
+            "bg-offwhite-snow",
+            "bg-offwhite-honeydew",
+            "bg-offwhite-mintcream",
+            "bg-offwhite-aliceblue",
+            "bg-offwhite-ghost",
+            "bg-offwhite-seashell",
+            "bg-offwhite-beige",
+            "bg-offwhite-oldlace",
+            "bg-offwhite-floral",
+            "bg-offwhite-ivory",
+            "bg-offwhite-antique",
+            "bg-offwhite-linen",
+            "bg-offwhite-lavenderblush"
+        ],
+        brands : [
+            "bg-facebook",
+            "bg-twitter",
+            "bg-youtube",
+            "bg-instagram",
+            "bg-snapchat",
+            "bg-whatsapp",
+            "bg-pinterest",
+            "bg-linkedin",
+            "bg-behance",
+            "bg-dribbble",
+            "bg-flicker"
+        ],
+        rotation : [
+            'bg-grade-0',
+            'bg-grade-45',
+            'bg-grade-90',
+            'bg-grade-120',
+            'bg-grade-90n',
+            'bg-grade-120n',
+            'bg-grade-45n',
+            'bg-grade-180',
+        ]
+    }
     //===> Render <===//
     render () {
         //===> Properties <===//
@@ -19,67 +87,8 @@ export default class PhenixBackground extends Component {
             onChange
         } = this.props;
 
-        //===> Colors List <===//
-        const pxPallete = {
-            main : [
-                "bg-transparent",
-                "bg-primary",
-                "bg-secondary",
-                "bg-gray",
-                "bg-dark",
-                "bg-white",
-                "bg-success",
-                "bg-danger",
-                "bg-warning",
-                "bg-info",
-                "bg-alpha-05",
-                "bg-alpha-10",
-                "bg-alpha-25",
-                "bg-alpha-50",
-                "bg-alpha-75",
-            ],
-            offwhite : [
-                "bg-offwhite-primary",
-                "bg-offwhite-secondary",
-                "bg-offwhite-info",
-                "bg-offwhite-success",
-                "bg-ffwhite-danger",
-                "bg-offwhite-warning",
-                "bg-offwhite-smoke",
-                "bg-offwhite-smoke",
-                "bg-offwhite-gray",
-                "bg-offwhite-snow",
-                "bg-offwhite-snow",
-                "bg-offwhite-honeydew",
-                "bg-offwhite-mintcream",
-                "bg-offwhite-aliceblue",
-                "bg-offwhite-ghost",
-                "bg-offwhite-seashell",
-                "bg-offwhite-beige",
-                "bg-offwhite-oldlace",
-                "bg-offwhite-floral",
-                "bg-offwhite-ivory",
-                "bg-offwhite-antique",
-                "bg-offwhite-linen",
-                "bg-offwhite-lavenderblush"
-            ],
-            brands : [
-                "bg-facebook",
-                "bg-twitter",
-                "bg-youtube",
-                "bg-instagram",
-                "bg-snapchat",
-                "bg-whatsapp",
-                "bg-pinterest",
-                "bg-linkedin",
-                "bg-behance",
-                "bg-dribbble",
-                "bg-flicker"
-            ],
-        }
-
         //===> Returned Value <===//
-        const backgroundOptions = {}
+        const options = {}
 
         //===> Type Activator <===//
         const activeBtn = (current) => type === current ?  'primary' : 'light';
@@ -89,23 +98,35 @@ export default class PhenixBackground extends Component {
         const setBackground = clicked => {
             //===> Get Value <===//
             let button   = clicked.target,
-                bgType   = button.getAttribute('data-type'),
-                bgValue  = button.getAttribute('data-value');
+                btnType   = button.getAttribute('data-type'),
+                btnValue  = button.getAttribute('data-value');
 
-            //===> Set Background Type <===//
-            backgroundOptions.type  = bgType;
+            //===> Rotate Gradient <===//
+            if (btnType === 'rotate') {
+                //===> Clear Exisitng Directions <===//
+                let current = options.value,
+                    saved   = value.replaceAll('   ', '');
 
-            //===> Set Gradient <===//
-            if (type === 'gradient') {
-                backgroundOptions.value = bgValue;
-            } 
-            //===> Set Color <===//
+                //===> Clear Exisitng Directions <===//
+                this.state.rotation.forEach(name => {
+                    if (name !== btnValue) {
+                        saved = saved.replaceAll(name, '').replaceAll(' n','');
+                        if (current) options.value = current.replaceAll(name, '').replaceAll(' n','');
+                    };
+                });
+
+                //===> Set New Direction <===//
+                options.type  = 'gradient';
+                options.value = `${saved} ${btnValue}`;
+            }
+            //===> Set Background <===//
             else {
-                backgroundOptions.value = bgValue;
+                options.type  = btnType;
+                options.value = btnValue;
             }
 
             //===> Return Options <===//
-            return onChange(backgroundOptions);
+            return onChange(options);
         }
 
         //===> Buttons Creator <===//
@@ -126,11 +147,31 @@ export default class PhenixBackground extends Component {
                     return c.toUpperCase();
                 });
 
-                output.push(<button onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value === name ? 'px-active' : null}`}></button>);
+                output.push(<button onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value.includes(name) ? 'px-active' : ''}`}></button>);
             }
 
             //===> Return Buttons <===//
             return output;
+        }
+
+        //===> Icons Buttons <===//
+        const makeRotations = (list, type) => {
+            let output = [];
+            //===> for each item <===//
+            for (let index = 0; index < list.length; index++) {
+                //===> Get Value <===//
+                const name = list[index];
+
+                //===> Rotation <===//
+                let rotation = name.replace('bg-grade-', '');
+                if (name.endsWith('n')) rotation = `-${rotation.slice(0,-1)}`;
+
+                //===> Get Value <===//
+                output.push(<button data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${value.includes(name) ? 'px-active' : ''}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
+            }
+
+            //===> Return Buttons <===//
+            return output
         }
 
         //===> Options Changer <===//
@@ -167,15 +208,15 @@ export default class PhenixBackground extends Component {
                 <div className='options-list'>
                     {/*===> Colors <====*/}
                     <div className={`flexbox color-options ${activeTab('color')}`}>
-                        {makeButtons(pxPallete.main, 'color')}
+                        {makeButtons(this.state.main, 'color')}
                         {/* Divider */}
                         <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                         {/* Offwhite */}
-                        {makeButtons(pxPallete.offwhite, 'color')}
+                        {makeButtons(this.state.offwhite, 'color')}
                         {/* Divider */}
                         <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                         {/* Brands */}
-                        {makeButtons(pxPallete.brands, 'color')}
+                        {makeButtons(this.state.brands, 'color')}
                     </div>
                     {/*===> Gradients <====*/}
                     <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
@@ -194,13 +235,9 @@ export default class PhenixBackground extends Component {
                         <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                         {/* Directions */}
                         <label className='mb-10 col-12'>Gradient Direction</label>
-                        <div className='px-group radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
-                            <button className='btn square tiny light' data-value="bg-grade-0"><i className='inline-block fas fa-arrow-to-bottom'></i></button>
-                            <button className='btn square tiny light' data-value="bg-grade-45"><i className='inline-block fas fa-arrow-to-bottom'style={{transform:'rotate(45deg)'}}></i></button>
-                            <button className='btn square tiny light' data-value="bg-grade-90"><i className='inline-block fas fa-arrow-to-bottom'style={{transform:'rotate(90deg)'}}></i></button>
-                            <button className='btn square tiny light' data-value="bg-grade-90n"><i className='inline-block fas fa-arrow-to-bottom'style={{transform:'rotate(-90deg)'}}></i></button>
-                            <button className='btn square tiny light' data-value="bg-grade-45n"><i className='inline-block fas fa-arrow-to-bottom'style={{transform:'rotate(-45deg)'}}></i></button>
-                            <button className='btn square tiny light' data-value="bg-grade-180"><i className='inline-block fas fa-arrow-to-bottom'style={{transform:'rotate(180deg)'}}></i></button>
+                        {/* .... */}
+                        <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
+                            {makeRotations(this.state.rotation, 'rotate')}
                         </div>
                     </div>
                     {/*===> Background <====*/}

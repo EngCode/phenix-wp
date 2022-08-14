@@ -34,11 +34,13 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.px_bg) original = original.replace(current, '');
 
         //===> Set New Value <===//
-        setAttributes({
-            px_bg : background.value,
-            px_bg_type : background.type,
-            className : `${original} ${background.value}`,
-        });
+        if (background.value) {
+            setAttributes({
+                px_bg : background.value,
+                px_bg_type : background.type,
+                className : `${original} ${background.value}`,
+            });
+        }
     }
 
     //===> Set Color <===//

@@ -98,10 +98,17 @@ body.admin-bar {padding-top: 0!important;}
 
 	.options-list .px-active {outline: 1px dashed var(--primary-color);}
 
-	.option-control[data-type="button"] .btn {
-		width: 100%;
-		pointer-events: none;
+	.option-control[data-type="button"] .btn,
+
+	.icon-btns {
+		button i {pointer-events: none;}
+		.px-active {
+			outline: 0 none;
+			color: var(--primary-color);
+		}
 	}
+
+	.option-control[data-type="button"] .btn {width: 100%;}
 
 	.option-control[data-type="button"] input:checked ~ .btn {
 		color: var(--primary-reverse);
