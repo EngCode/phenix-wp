@@ -18,7 +18,7 @@ import PhenixColor from '../px-components/px-colors';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    //===> Settings <===//
+    //===> Set Settings <===//
     const set_size = size => setAttributes({ size });
     const set_tagName = tagName => setAttributes({ tagName });
     const set_container = container => setAttributes({ container });
@@ -27,8 +27,8 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Background <===//
     const set_background = background => {
         //===> Get Value <===//
-        let original  = attributes.className.replace('  ', ' '),
-            current   = attributes.px_bg;
+        let current  = attributes.px_bg,
+            original = attributes.className.replace('  ', ' ');
 
         //===> Remove Current Value <===//
         if (attributes.px_bg) original = original.replace(current, '');
@@ -44,13 +44,13 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Color <===//
     const set_color = color => {
         //===> Get Value <===//
-        let original = attributes.className.replace('  ', ' '),
-            current  = attributes.px_color;
+        let current  = attributes.px_color,
+            original = attributes.className.replace('  ', ' ');
 
-        //===> Remove Previous <===//
+        //===> Remove Current Value <===//
         if (current) original = original.replace(current, '');
 
-        //===> Set Value <===//
+        //===> Set New Value <===//
         setAttributes({
             px_color  : color,
             className : `${original} ${color}`,
@@ -87,7 +87,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <ToggleControl label="With Container" checked={attributes.container} onChange={set_container}/>
             </PanelBody>
             {/*=== Container Options ===*/}
-            {attributes.container ? <PanelBody title="Container Settings">
+            {attributes.container ? <PanelBody title="Container" initialOpen={false}>
                 {/*=== Container Size ===*/}
                 <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
                     { label: 'Small',  value: 'container-sm' },
@@ -101,12 +101,12 @@ export default function Edit({ attributes, setAttributes }) {
                 <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Background Settings" initialOpen={false}>
-                <PhenixBackground onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
+            <PanelBody title="Typography" initialOpen={false}>
+                <PhenixColor onChange={set_color} value={attributes.px_color} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Text Color" initialOpen={false}>
-                <PhenixColor onChange={set_color} />
+            <PanelBody title="Background" initialOpen={false}>
+                <PhenixBackground onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

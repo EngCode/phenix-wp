@@ -87,7 +87,7 @@ export default class PhenixColors extends Component {
                 {/*===> Label <===*/}
                 <label className='mb-10'>Select Color</label>
                 {/*===> Background <===*/}
-                <div className='flexbox'>
+                <div className='flexbox options-list'>
                     {makeButtons(pxPallete.main)}
                     {/* Divider */}
                     <span className='border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>

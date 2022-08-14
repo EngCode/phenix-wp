@@ -83,9 +83,15 @@ body.admin-bar {padding-top: 0!important;}
 	border-bottom: 1px solid rgba(#000, 0.10);
 }
 
+.block-editor-block-inspector .block-editor-block-inspector__advanced {border-bottom: 1px solid rgba(#000, 0.10);}
+
 .px-gb-component {
-	.bg-transparent, .bg-inherit {
-		background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+	.bg-transparent	{
+		background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;
+	}
+
+	.bg-inherit {
+		background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);
 	}
 	
 	.borderd-group .btn:not(:last-child) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
