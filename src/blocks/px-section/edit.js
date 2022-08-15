@@ -99,8 +99,10 @@ export default function Edit({ attributes, setAttributes }) {
     const TagName = attributes.tagName;
 
     //===> onLoad Set Background <===//
-    if(attributes.px_bg_type === 'image') useEffect(() => setPhenixView());
-    if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg;
+    if (attributes.px_bg_type === 'image') {
+        blockProps["data-src"] = attributes.px_bg;
+        useEffect(() => setPhenixView());
+    }
 
     //===> Container Options <===//
     const container_options = {

@@ -640,10 +640,13 @@ function Edit(_ref) {
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
   var TagName = attributes.tagName; //===> onLoad Set Background <===//
 
-  if (attributes.px_bg_type === 'image') (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    return setPhenixView();
-  });
-  if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg; //===> Container Options <===//
+  if (attributes.px_bg_type === 'image') {
+    blockProps["data-src"] = attributes.px_bg;
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+      return setPhenixView();
+    });
+  } //===> Container Options <===//
+
 
   var container_options = {
     size: attributes.size,
