@@ -30,10 +30,14 @@ export default function Edit({ attributes, setAttributes }) {
             blockElement = '.wp-block-design-px-section[data-src]';
 
         //===> Get the Element from Site Editor <===//
-        if (siteEditor) blockElement = siteEditor.document.querySelectorAll('.px-media');
+        if (siteEditor) {
+            blockElement = siteEditor.document.querySelectorAll('.px-media');
+            blockElement = [...blockElement];
+            Phenix(blockElement).multimedia();
+        }
 
         //===> Set Background <===//
-        Phenix(blockElement).multimedia();
+        if (!siteEditor) Phenix(blockElement).multimedia();
     }
 
     //===> Set Background <===//

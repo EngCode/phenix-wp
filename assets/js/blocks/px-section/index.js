@@ -518,6 +518,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _px_components_px_background__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../px-components/px-background */ "./src/blocks/px-components/px-background.js");
 /* harmony import */ var _px_components_px_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-components/px-colors */ "./src/blocks/px-components/px-colors.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //====> WP Modules <====//
 
  //====> Phenix Modules <====//
@@ -560,9 +572,14 @@ function Edit(_ref) {
     var siteEditor = window.frames['editor-canvas'],
         blockElement = '.wp-block-design-px-section[data-src]'; //===> Get the Element from Site Editor <===//
 
-    if (siteEditor) blockElement = siteEditor.document.querySelectorAll('.px-media'); //===> Set Background <===//
+    if (siteEditor) {
+      blockElement = siteEditor.document.querySelectorAll('.px-media');
+      blockElement = _toConsumableArray(blockElement);
+      Phenix(blockElement).multimedia();
+    } //===> Set Background <===//
 
-    Phenix(blockElement).multimedia();
+
+    if (!siteEditor) Phenix(blockElement).multimedia();
   }; //===> Set Background <===//
 
 
