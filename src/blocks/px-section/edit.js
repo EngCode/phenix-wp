@@ -8,8 +8,7 @@ import {
 import {
     InnerBlocks,
     useBlockProps,
-    InspectorControls,
-    useInnerBlocksProps,
+    InspectorControls
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -24,24 +23,56 @@ export default function Edit({ attributes, setAttributes }) {
     const set_container = container => setAttributes({ container });
     const set_container_flex = container_flex => setAttributes({ container_flex });
 
+    //===> Set Phenix View <===//
+    const setPhenixView = () => {
+        //===> Check Site Editor <===//
+        let siteEditor = window.frames['editor-canvas'],
+            blockElement = '.wp-block-design-px-section[data-src]';
+
+        //===> Get the Element from Site Editor <===//
+        if (siteEditor) blockElement = siteEditor.document.querySelectorAll('.px-media');
+
+        //===> Set Background <===//
+        Phenix(blockElement).multimedia();
+    }
+
     //===> Set Background <===//
     const set_background = background => {
-        //===> Get Value <===//
-        let current  = attributes.px_bg,
-            original = attributes.className.replace('  ', ' ');
+        //===> Original Classes <===//
+        let original = attributes.className.replaceAll('  ', ' ').replace(' px-media', ''),
+            current  = attributes.px_bg,
+            rotate = attributes.px_bg_rotate;
 
         //===> Remove Current Value <===//
         if (attributes.px_bg) original = original.replace(current, '');
+        if (rotate) original = original.replace(rotate, '');
 
-        //===> Set New Value <===//
-        if (background.value) {
-            setAttributes({
-                px_bg : background.value,
-                px_bg_type : background.type,
-                className : `${original} ${background.value}`,
-            });
+        //===> Update Background <===//
+        setAttributes({
+            px_bg : background.value,
+            px_bg_type : background.type,
+        });
+
+        //===> Update Rotation <===//
+        if (background.rotation) {
+            original = original.replace(rotate, '');
+            setAttributes({px_bg_rotate : background.rotation,})
+        }
+
+        //===> Set Background [Colors, Gradients] <===//
+        if (background.type != 'image') {
+            setAttributes({className : `${original} ${background.value}${background.rotation ? ' '+background.rotation : ''}`});
+        }
+
+        //===> Set Backgeround Image <===//
+        else if (background.value) {
+            //===> Set Background <===//
+            setPhenixView();
+            setAttributes({className : `${original} px-media`});
         }
     }
+
+    if(attributes.px_bg_type === 'image') setPhenixView();
 
     //===> Set Color <===//
     const set_color = color => {
@@ -62,6 +93,9 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const TagName = attributes.tagName;
+
+    //===> .Check Background Image. <===//
+    if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg;
 
     //===> Container Options <===//
     const container_options = {
@@ -104,6 +138,7 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>
+                {/* Text Color */}
                 <PhenixColor onChange={set_color} value={attributes.px_color} />
             </PanelBody>
             {/*===> Widget Panel <===*/}

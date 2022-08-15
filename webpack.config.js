@@ -4,10 +4,10 @@ const path = require('path');
 
 module.exports = {
     ...defaultConfig,
-    mode: "production",
+    mode: "development",
     entry: {
         'px-section': './src/blocks/px-section/index.js',
-        // 'px-grid': './src/blocks/px-grid/index.js'
+        // 'px-test': './src/blocks/px-test/index.js'
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

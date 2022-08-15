@@ -36,6 +36,11 @@ registerBlockType(metadata, {
             flexbox : attributes.container_flex ? 'flexbox' : '',
         }
 
+        //===> .Check Background Image. <===//
+        if (attributes.px_bg_type === 'image') {
+            blockProps["data-src"] = attributes.px_bg;
+        }
+
         //===> Render <===//
         return (
             <TagName { ...blockProps }>

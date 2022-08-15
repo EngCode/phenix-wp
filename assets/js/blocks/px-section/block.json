@@ -29,6 +29,10 @@
       "type": "string",
       "default": "color"
     },
+    "px_bg_rotate": {
+      "type": "string",
+      "default": ""
+    },
     "px_bg": {
       "type": "string",
       "default": ""

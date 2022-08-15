@@ -16,7 +16,7 @@
             wp_enqueue_script('px-section', $blocksPath.'px-section/index.js', $blocksDependencies, NULL , true);
             
             //====> Phenix Grid <====//
-            // wp_enqueue_script('px-grid', $blocksPath.'px-grid/index.js', $blocksDependencies, NULL , true);
+            // wp_enqueue_script('px-test', $blocksPath.'px-test/index.js', $blocksDependencies, NULL , true);
         }
 
         add_action('enqueue_block_editor_assets', 'phenix_blocks');
@@ -35,6 +35,6 @@
             return array_keys( $blocks );
         }
 
-        add_filter('allowed_block_types_all', 'blocks_remover');
+        // add_filter('allowed_block_types_all', 'blocks_remover');
     endif;
 ?>

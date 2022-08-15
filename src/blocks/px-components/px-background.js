@@ -7,6 +7,7 @@
 
 //===> WordPress Modules <===//
 import {Component} from '@wordpress/element';
+import MediaUploader from '../px-components/media-uploader';
 
 //===> Phenix Background <===//
 export default class PhenixBackground extends Component {
@@ -67,16 +68,28 @@ export default class PhenixBackground extends Component {
             "bg-dribbble",
             "bg-flicker"
         ],
+        gradients: [
+            "bg-grade-primary",
+            "bg-grade-secondary",
+            "bg-grade-warning",
+            "bg-grade-danger",
+            "bg-grade-success",
+            "bg-grade-water",
+            "bg-grade-ice",
+            "bg-grade-fire",
+            "bg-grade-purple"
+        ],
         rotation : [
             'bg-grade-0',
             'bg-grade-45',
             'bg-grade-90',
             'bg-grade-120',
-            'bg-grade-90n',
             'bg-grade-120n',
+            'bg-grade-90n',
             'bg-grade-45n',
             'bg-grade-180',
-        ]
+        ],
+        placeholder : "https://via.placeholder.com/480x200.webp?text=Example",
     }
     //===> Render <===//
     render () {
@@ -96,33 +109,43 @@ export default class PhenixBackground extends Component {
 
         //===> Set Background <===//
         const setBackground = clicked => {
-            //===> Get Value <===//
-            let button   = clicked.target,
-                btnType   = button.getAttribute('data-type'),
-                btnValue  = button.getAttribute('data-value');
-
-            //===> Rotate Gradient <===//
-            if (btnType === 'rotate') {
-                //===> Clear Exisitng Directions <===//
-                let current = options.value,
-                    saved   = value.replaceAll('   ', '');
-
-                //===> Clear Exisitng Directions <===//
-                this.state.rotation.forEach(name => {
-                    if (name !== btnValue) {
-                        saved = saved.replaceAll(name, '').replaceAll(' n','');
-                        if (current) options.value = current.replaceAll(name, '').replaceAll(' n','');
-                    };
-                });
-
-                //===> Set New Direction <===//
-                options.type  = 'gradient';
-                options.value = `${saved} ${btnValue}`;
+            //===> Colors & Gradients <===//
+            if (clicked.target) {
+                //===> Get Value <===//
+                let button   = clicked.target,
+                    btnType  = button.getAttribute('data-type'),
+                    btnValue = button.getAttribute('data-value');
+    
+                //===> Rotate Gradient <===//
+                if (btnType === 'rotate') {
+                    //===> Clear Exisitng Directions <===//
+                    let current = options.value,
+                        saved   = value.replaceAll('   ', '');
+    
+                    //===> Clear Exisitng Directions <===//
+                    this.state.rotation.forEach(name => {
+                        if (name !== btnValue) {
+                            saved = saved.replaceAll(name, '').replaceAll(' n','');
+                            if (current) options.value = current.replaceAll(name, '').replaceAll(' n','');
+                        };
+                    });
+    
+                    //===> Set New Direction <===//
+                    options.type     = 'gradient';
+                    options.value    = saved;
+                    options.rotation = btnValue;
+                } else {
+                    //===> Set Background <===//
+                    options.type  = btnType;
+                    options.value = btnValue;
+                    options.rotation = null;
+                }
             }
-            //===> Set Background <===//
+            //===> Image Type <===//
             else {
-                options.type  = btnType;
-                options.value = btnValue;
+                //===> Set New Direction <===//
+                options.type  = 'image';
+                options.value = clicked.url;
             }
 
             //===> Return Options <===//
@@ -220,17 +243,7 @@ export default class PhenixBackground extends Component {
                     </div>
                     {/*===> Gradients <====*/}
                     <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
-                        {makeButtons([
-                            "bg-grade-primary",
-                            "bg-grade-secondary",
-                            "bg-grade-warning",
-                            "bg-grade-danger",
-                            "bg-grade-success",
-                            "bg-grade-water",
-                            "bg-grade-ice",
-                            "bg-grade-fire",
-                            "bg-grade-purple"
-                        ], 'gradient')}
+                        {makeButtons(this.state.gradients, 'gradient')}
                         {/* Divider */}
                         <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                         {/* Directions */}
@@ -242,7 +255,7 @@ export default class PhenixBackground extends Component {
                     </div>
                     {/*===> Background <====*/}
                     <div className={`flexbox image-options ${activeTab('image')}`}>
-                        ....
+                        <MediaUploader value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
                     </div>
                 </div>
                 {/*===> End Component <===*/}

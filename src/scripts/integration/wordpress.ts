@@ -33,6 +33,9 @@ Phenix(document).ready(ready => {
         //====> Copyrights Protection <====//
         // Phenix(document).on("contextmenu", rightClick => rightClick.preventDefault());
         // Phenix(document).on("selectstart", textSelect => textSelect.preventDefault());
+
+        //====> Phenix Blocks <====//
+        Phenix('.wp-block-design-px-section[data-src]').multimedia();
     }
     /*====> for Admin Panel <====*/
     else {}

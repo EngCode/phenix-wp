@@ -15,27 +15,35 @@ export default class MediaUploader extends Component {
         const {
             label,
             value,
+            size,
             setValue
         } = this.props;
 
         //===> Output <===//
-        return (
-            <MediaUpload 
-                onSelect={ setValue }
-                value={value}
-                render={({open}) => (
-                    <div class="mb-20 cursor-pointer" onClick={open}>
+        return (<>
+            <MediaUpload onSelect={ setValue } value={value} render={({open}) => (
+                    <div class="mb-15 cursor-pointer" onClick={open}>
                         {/* label */}
-                        <label className="mb-10">{label}</label>
+                        {label ? <label className="mb-10">{label}</label> : ''}
                         {/* elements group */}
                         <div className="flexbox align-center-y align-between">
-                            <img src={value} style={{"max-height": "2.25rem"}} />
-                            <button onClick={open} class="btn square primary small radius-sm fs-12 fal fa-upload"></button>
+                            {size === 'small' ?
+                                <>
+                                    <img src={value} style={{"max-height": "2.25rem"}} />
+                                    <button onClick={open} class="btn square primary small radius-sm fs-12 fal fa-upload"></button>
+                                </>
+                                :
+                                <>
+                                    <img src={value} className="radius-sm radius-top" style={{"max-width": "100%", "display": "block"}} />
+                                    <button onClick={open} class="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select Image</button>
+                                </>
+                            }
                         </div>
                         {/* //elements group */}
                     </div>
                 )}
             />
+        </>
         )
     }
 }
