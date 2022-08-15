@@ -567,8 +567,11 @@ function Edit(_ref) {
     return setAttributes({
       container_flex: container_flex
     });
-  }; //===> Set Phenix View <===//
+  }; //===> Get Block Properties <===//
 
+
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  var TagName = attributes.tagName; //===> Set Phenix View <===//
 
   var setPhenixView = function setPhenixView() {
     //===> Check Site Editor <===//
@@ -634,11 +637,8 @@ function Edit(_ref) {
       px_color: color,
       className: "".concat(original, " ").concat(color)
     });
-  }; //===> Get Block Properties <===//
+  }; //===> onLoad Set Background <===//
 
-
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
-  var TagName = attributes.tagName; //===> onLoad Set Background <===//
 
   if (attributes.px_bg_type === 'image') {
     blockProps["data-src"] = attributes.px_bg;

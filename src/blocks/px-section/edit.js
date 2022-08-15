@@ -25,6 +25,10 @@ export default function Edit({ attributes, setAttributes }) {
     const set_container = container => setAttributes({ container });
     const set_container_flex = container_flex => setAttributes({ container_flex });
 
+    //===> Get Block Properties <===//
+    const blockProps = useBlockProps();
+    const TagName = attributes.tagName;
+
     //===> Set Phenix View <===//
     const setPhenixView = () => {
         //===> Check Site Editor <===//
@@ -93,10 +97,6 @@ export default function Edit({ attributes, setAttributes }) {
             className : `${original} ${color}`,
         });
     }
-
-    //===> Get Block Properties <===//
-    const blockProps = useBlockProps();
-    const TagName = attributes.tagName;
 
     //===> onLoad Set Background <===//
     if (attributes.px_bg_type === 'image') {
