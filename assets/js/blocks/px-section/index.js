@@ -516,8 +516,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _px_components_px_background__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../px-components/px-background */ "./src/blocks/px-components/px-background.js");
-/* harmony import */ var _px_components_px_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-components/px-colors */ "./src/blocks/px-components/px-colors.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _px_components_px_background__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-components/px-background */ "./src/blocks/px-components/px-background.js");
+/* harmony import */ var _px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-components/px-colors */ "./src/blocks/px-components/px-colors.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -531,6 +533,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 //====> WP Modules <====//
+
 
  //====> Phenix Modules <====//
 
@@ -617,9 +620,8 @@ function Edit(_ref) {
         className: "".concat(original, " px-media")
       });
     }
-  };
+  }; //===> Set Color <===//
 
-  if (attributes.px_bg_type === 'image') setPhenixView(); //===> Set Color <===//
 
   var set_color = function set_color(color) {
     //===> Get Value <===//
@@ -636,8 +638,11 @@ function Edit(_ref) {
 
 
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
-  var TagName = attributes.tagName; //===> .Check Background Image. <===//
+  var TagName = attributes.tagName; //===> onLoad Set Background <===//
 
+  if (attributes.px_bg_type === 'image') (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    return setPhenixView();
+  });
   if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg; //===> Container Options <===//
 
   var container_options = {
@@ -708,13 +713,13 @@ function Edit(_ref) {
   })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Typography",
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_components_px_colors__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__["default"], {
     onChange: set_color,
     value: attributes.px_color
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Background",
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_components_px_background__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_components_px_background__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onChange: set_background,
     type: attributes.px_bg_type,
     value: attributes.px_bg

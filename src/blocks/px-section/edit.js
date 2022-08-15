@@ -11,6 +11,8 @@ import {
     InspectorControls
 } from '@wordpress/block-editor';
 
+import { useState, useEffect } from '@wordpress/element';
+
 //====> Phenix Modules <====//
 import PhenixBackground from '../px-components/px-background';
 import PhenixColor from '../px-components/px-colors';
@@ -76,8 +78,6 @@ export default function Edit({ attributes, setAttributes }) {
         }
     }
 
-    if(attributes.px_bg_type === 'image') setPhenixView();
-
     //===> Set Color <===//
     const set_color = color => {
         //===> Get Value <===//
@@ -98,7 +98,8 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const TagName = attributes.tagName;
 
-    //===> .Check Background Image. <===//
+    //===> onLoad Set Background <===//
+    if(attributes.px_bg_type === 'image') useEffect(() => setPhenixView());
     if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg;
 
     //===> Container Options <===//
