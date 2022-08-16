@@ -115,3 +115,18 @@ body.admin-bar {padding-top: 0!important;}
 		background-color: var(--primary-color);
 	}
 }
+
+.pxi {
+	background-size: 1em;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.pxi-align-x-start   {background-image: url('../img/blocks/align-x-start.svg');}
+.pxi-align-x-center  {background-image: url('../img/blocks/align-x-center.svg');}
+.pxi-align-x-between {background-image: url('../img/blocks/align-x-between.svg');}
+.pxi-align-x-around  {background-image: url('../img/blocks/align-x-around.svg');}
+.pxi-align-x-end     {background-image: url('../img/blocks/align-x-end.svg');}
+.pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
+.pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
+.pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}

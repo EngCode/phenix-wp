@@ -16,6 +16,7 @@ import { useState, useEffect } from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixBackground from '../px-components/px-background';
 import PhenixColor from '../px-components/px-colors';
+import FlexAlignment from '../px-components/flex-alignment';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -49,7 +50,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Background <===//
     const set_background = background => {
         //===> Original Classes <===//
-        let original = attributes.className.replaceAll('  ', ' ').replace(' px-media', ''),
+        let original = attributes.className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
             current  = attributes.px_bg,
             rotate = attributes.px_bg_rotate;
 
@@ -86,7 +87,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_color = color => {
         //===> Get Value <===//
         let current  = attributes.px_color,
-            original = attributes.className.replace('  ', ' ');
+            original = attributes.className.replace(/\s{2,}/g, ' ');
 
         //===> Remove Current Value <===//
         if (current) original = original.replace(current, '');
@@ -98,16 +99,20 @@ export default function Edit({ attributes, setAttributes }) {
         });
     }
 
+    //===> Container Options <===//
+    const container_options = {
+        size : attributes.size,
+        flexbox : attributes.container_flex ? ' flexbox' : '',
+        alignment : attributes.flex_align
+    }
+
+    //===> Set Alignment <===//
+    const set_alignment = alignment => setAttributes({flex_align : alignment});
+
     //===> onLoad Set Background <===//
     if (attributes.px_bg_type === 'image') {
         blockProps["data-src"] = attributes.px_bg;
         useEffect(() => setPhenixView());
-    }
-
-    //===> Container Options <===//
-    const container_options = {
-        size : attributes.size,
-        flexbox : attributes.container_flex ? 'flexbox' : '',
     }
 
     //===> Render <===//
@@ -142,6 +147,11 @@ export default function Edit({ attributes, setAttributes }) {
 
                 {/*=== Container Size ===*/}
                 <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
+            
+                {/*=== Flexbox Alignment ===*/}
+                {attributes.container_flex ? 
+                    <FlexAlignment value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
+                :''}
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>
@@ -158,7 +168,7 @@ export default function Edit({ attributes, setAttributes }) {
         {/* //====> Edit Layout <====// */}
         <TagName { ...blockProps }>
             {attributes.container ?
-                <div className={`${container_options.size} ${container_options.flexbox}`}>
+                <div className={`${container_options.size}${container_options.flexbox} ${container_options.alignment}`}>
                     <InnerBlocks />
                 </div>
             :

@@ -24,6 +24,11 @@
             "default": false
         },
 
+        "flex_align" : {
+            "type": "string",
+            "default": ""
+        },
+
         "size" : {
             "type": "string",
             "default": "container"

@@ -30,6 +30,7 @@
 
     /*==== Secondary Color ====*/
     --secondary-color   : var(--wp--preset--color--secondary);
+    --secondary-dark    : var(--wp--preset--color--secondary-dark);
     --secondary-hover   : var(--wp--preset--color--secondary-hvr);
     --secondary-reverse : var(--wp--preset--color--secondary-txt);
     --secondary-offwhite: var(--wp--preset--color--secondary-offwhite);

@@ -15,16 +15,17 @@
     --icons-font: "Font Awesome 6";
 
     /*==== Primary Color ====*/
-    --primary-color   : #0064F9;
-    --primary-hover   : #328BF1;
+    --primary-color   : #E8282B;
+    --primary-hover   : #D61B20;
     --primary-reverse : #FFFFFF;
-    --primary-offwhite: #E1EEF7;
+    --primary-offwhite: #FFEFEF;
 
     /*==== Secondary Color ====*/
-    --secondary-color   : #F8C25B;
-    --secondary-hover   : #FB955D;
+    --secondary-color   : #1A5AAF;
+    --secondary-hover   : #180B80;
     --secondary-reverse : #000000;
-    --secondary-offwhite: #fddfa8;
+    --secondary-offwhite: #FBFAFE;
+    --secondary-dark: #120E2E;
 
     /*==== Gradients ====*/
     --primary-gradient   : var(--primary-color), var(--primary-hover);
@@ -71,6 +72,8 @@
     --direction-start: #{$direction-start};
     --direction-end: #{$direction-end};
 }
+
+.bg-secondary-dark {background-color: var(--secondary-dark);}
 
 /*==== Integration ====*/
 @import 'integration/wordpress';  //===> WordPress Integration

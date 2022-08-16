@@ -17,6 +17,7 @@ export default class PhenixBackground extends Component {
             "bg-transparent",
             "bg-primary",
             "bg-secondary",
+            "bg-secondary-dark",
             "bg-gray",
             "bg-dark",
             "bg-white",
@@ -198,7 +199,7 @@ export default class PhenixBackground extends Component {
         }
 
         //===> Options Changer <===//
-        const changeType = (clicked) => {
+        const changeTab = (clicked) => {
             //===> Option Data <===//
             let element = Phenix(clicked.target),
                 parent  = element.ancestor('.options-tabs'),
@@ -221,9 +222,9 @@ export default class PhenixBackground extends Component {
             <div className='px-gb-component'>
                 {/*===> Background Types <===*/}
                 <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button className={`btn tiny col ${activeBtn('color')}`} onClick={changeType} data-value="color">Colors</button>
-                    <button className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeType} data-value="gradient">Gradients</button>
-                    <button className={`btn tiny col ${activeBtn('image')}`} onClick={changeType} data-value="image">Image</button>
+                    <button className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
+                    <button className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
+                    <button className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
                     <button className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
                 </div>
 

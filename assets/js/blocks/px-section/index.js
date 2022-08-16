@@ -2,6 +2,223 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks/px-components/flex-alignment.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/px-components/flex-alignment.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlexAlignment)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+ //===> Phenix Background <===//
+
+var FlexAlignment = /*#__PURE__*/function (_Component) {
+  _inherits(FlexAlignment, _Component);
+
+  var _super = _createSuper(FlexAlignment);
+
+  function FlexAlignment() {
+    _classCallCheck(this, FlexAlignment);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(FlexAlignment, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> Alignment Buttons <===//
+
+      var createAlignment = function createAlignment(screen) {
+        if (!screen) screen = "";
+        {
+          /*===> Responsive Devices <===*/
+        }
+        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
+          className: "mb-10 fluid weight-medium"
+        }, "Horizontal Align"), /*#__PURE__*/React.createElement("div", {
+          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        }, /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Start",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-start"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-start-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Center",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-center"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-center-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "End",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-end"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-end-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Between",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-between"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-between")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Around",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-around"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-around")
+        })), /*#__PURE__*/React.createElement("label", {
+          className: "mb-10 fluid weight-medium"
+        }, "Vertical Align"), /*#__PURE__*/React.createElement("div", {
+          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        }, /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Start",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-start"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-start-y")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "Center",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-center"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-center-y")
+        }), /*#__PURE__*/React.createElement("button", {
+          onClick: setAlignment,
+          title: "End",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-end"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-end-y")
+        })));
+      }; //===> Set Alignment <===//
+
+
+      var setAlignment = function setAlignment(clicked) {
+        //===> Element Data <===//
+        var button = clicked.target,
+            newVal = button.getAttribute('data-value'),
+            other = [],
+            screen = button.getAttribute('data-screen') || ''; //===> Get Sibling Values <===//
+
+        button.parentNode.querySelectorAll('.btn').forEach(function (element) {
+          other.push(element.getAttribute('data-value'));
+        });
+        /*===> if Current Value has Current Screen Point <===*/
+
+        if (value.includes(screen)) value.split(' ').forEach(function (item) {
+          //===> if the siblings has the item in it remove it <===//
+          if (other.includes(item)) value.replace(item, ''); //===> if the item is not in siblings add it <===//
+          else if (item.length > 1) newVal = "".concat(item, " ").concat(newVal);
+        });
+        /*===> else if its New Screen Point <===*/
+        else newVal = "".concat(value, " ").concat(newVal); //===> Return Options <===//
+
+        return onChange("".concat(newVal));
+      }; //===> Options Changer <===//
+
+
+      var changeTab = function changeTab(clicked) {
+        var _optionsList$querySel;
+
+        //===> Option Data <===//
+        var element = Phenix(clicked.target),
+            parent = element.ancestor('.options-tabs'),
+            optionsList = Phenix(parent).next('.options-list'),
+            currentActive = Phenix(parent.querySelector('.primary')),
+            currentType = "".concat(element[0].getAttribute('data-options'), "-options"),
+            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
+
+        currentActive.addClass('light').removeClass('primary');
+        element.addClass('primary').removeClass('light'); //===> Show Options <===//
+
+        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
+        Phenix(targetElement).removeClass('hidden');
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: changeTab,
+        className: "btn square tiny primary col far fa-mobile",
+        title: "Mobile Screens",
+        "data-options": "small"
+      }), /*#__PURE__*/React.createElement("button", {
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-tablet",
+        title: "Tablet Screens",
+        "data-options": "medium"
+      }), /*#__PURE__*/React.createElement("button", {
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-laptop",
+        title: "Desktop Screens",
+        "data-options": "large"
+      }), /*#__PURE__*/React.createElement("button", {
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-desktop",
+        title: "xLarge Screens",
+        "data-options": "xlarge"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox small-options"
+      }, createAlignment()), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox medium-options hidden"
+      }, createAlignment('-md')), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox large-options hidden"
+      }, createAlignment('-lg')), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox xlarge-options hidden"
+      }, createAlignment('-xl'))));
+    }
+  }]);
+
+  return FlexAlignment;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "./src/blocks/px-components/media-uploader.js":
 /*!****************************************************!*\
   !*** ./src/blocks/px-components/media-uploader.js ***!
@@ -175,7 +392,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      main: ["bg-transparent", "bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
+      main: ["bg-transparent", "bg-primary", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
       offwhite: ["bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-ffwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-mintcream", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-ivory", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush"],
       brands: ["bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
       gradients: ["bg-grade-primary", "bg-grade-secondary", "bg-grade-warning", "bg-grade-danger", "bg-grade-success", "bg-grade-water", "bg-grade-ice", "bg-grade-fire", "bg-grade-purple"],
@@ -309,7 +526,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       }; //===> Options Changer <===//
 
 
-      var changeType = function changeType(clicked) {
+      var changeTab = function changeTab(clicked) {
         var _optionsList$querySel;
 
         //===> Option Data <===//
@@ -334,15 +551,15 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
       }, /*#__PURE__*/React.createElement("button", {
         className: "btn tiny col ".concat(activeBtn('color')),
-        onClick: changeType,
+        onClick: changeTab,
         "data-value": "color"
       }, "Colors"), /*#__PURE__*/React.createElement("button", {
         className: "btn tiny col ".concat(activeBtn('gradient')),
-        onClick: changeType,
+        onClick: changeTab,
         "data-value": "gradient"
       }, "Gradients"), /*#__PURE__*/React.createElement("button", {
         className: "btn tiny col ".concat(activeBtn('image')),
-        onClick: changeType,
+        onClick: changeTab,
         "data-value": "image"
       }, "Image"), /*#__PURE__*/React.createElement("button", {
         className: "btn tiny bg-offwhite-smoke col far fa-ellipsis-v",
@@ -520,6 +737,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _px_components_px_background__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-components/px-background */ "./src/blocks/px-components/px-background.js");
 /* harmony import */ var _px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-components/px-colors */ "./src/blocks/px-components/px-colors.js");
+/* harmony import */ var _px_components_flex_alignment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-components/flex-alignment */ "./src/blocks/px-components/flex-alignment.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -536,6 +754,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
  //====> Phenix Modules <====//
+
 
 
  //====> Edit Mode <====//
@@ -591,7 +810,7 @@ function Edit(_ref) {
 
   var set_background = function set_background(background) {
     //===> Original Classes <===//
-    var original = attributes.className.replaceAll('  ', ' ').replace(' px-media', ''),
+    var original = attributes.className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
         current = attributes.px_bg,
         rotate = attributes.px_bg_rotate; //===> Remove Current Value <===//
 
@@ -629,13 +848,26 @@ function Edit(_ref) {
   var set_color = function set_color(color) {
     //===> Get Value <===//
     var current = attributes.px_color,
-        original = attributes.className.replace('  ', ' '); //===> Remove Current Value <===//
+        original = attributes.className.replace(/\s{2,}/g, ' '); //===> Remove Current Value <===//
 
     if (current) original = original.replace(current, ''); //===> Set New Value <===//
 
     setAttributes({
       px_color: color,
       className: "".concat(original, " ").concat(color)
+    });
+  }; //===> Container Options <===//
+
+
+  var container_options = {
+    size: attributes.size,
+    flexbox: attributes.container_flex ? ' flexbox' : '',
+    alignment: attributes.flex_align
+  }; //===> Set Alignment <===//
+
+  var set_alignment = function set_alignment(alignment) {
+    return setAttributes({
+      flex_align: alignment
     });
   }; //===> onLoad Set Background <===//
 
@@ -645,13 +877,8 @@ function Edit(_ref) {
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
       return setPhenixView();
     });
-  } //===> Container Options <===//
+  } //===> Render <===//
 
-
-  var container_options = {
-    size: attributes.size,
-    flexbox: attributes.container_flex ? 'flexbox' : ''
-  }; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -713,7 +940,10 @@ function Edit(_ref) {
     label: "Flex Container",
     checked: attributes.container_flex,
     onChange: set_container_flex
-  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+  }), attributes.container_flex ? /*#__PURE__*/React.createElement(_px_components_flex_alignment__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: attributes.flex_align,
+    onChange: set_alignment
+  }) : '') : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Typography",
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -727,7 +957,7 @@ function Edit(_ref) {
     type: attributes.px_bg_type,
     value: attributes.px_bg
   }))), /*#__PURE__*/React.createElement(TagName, blockProps, attributes.container ? /*#__PURE__*/React.createElement("div", {
-    className: "".concat(container_options.size, " ").concat(container_options.flexbox)
+    className: "".concat(container_options.size).concat(container_options.flexbox, " ").concat(container_options.alignment)
   }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, null)) : /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, null)));
 }
 
@@ -779,7 +1009,7 @@ module.exports = window["wp"]["element"];
   \******************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"design/px-section","version":"0.1.0","title":"Phenix Section","category":"design","description":"Main Header Block for Phenix Themes.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"design/px-section","version":"0.1.0","title":"Phenix Section","category":"design","description":"Main Header Block for Phenix Themes.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 

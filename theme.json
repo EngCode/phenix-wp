@@ -79,6 +79,11 @@
 					"name": "Secondary Text"
 				},
 				{
+					"slug": "secondary-dark",
+					"color": "#120E2E",
+					"name": "Secondary Text"
+				},
+				{
 					"slug": "info",
 					"color": "#816CF3",
 					"name": "Informtive Color"
