@@ -33,18 +33,19 @@ if (!function_exists('phenix_support')) :
 	function phenix_support() {
 		//====> Support Block Styles <====//
 		add_theme_support('wp-block-styles');
+		remove_theme_support('core-block-patterns');
 
 		//====> Editor Styles <====//
 		add_editor_style('style.css');
+		
 
 		//====> Translation Support <====//
 		load_theme_textdomain('phenix', get_template_directory() . '/languages');
 
 		//====> Menus Locations <====//
-		register_nav_menus( array(
-			'px-navigation' => 'Header Menu',
-			'footer-menu' => 'Footer Menu No.1',
-			'footer-menu-2' => 'Footer Menu No.2',
+		register_nav_menus(array(
+			'main-menu' => 'Main Menu',
+			'footer-menu' => 'Footer Menu',
 		));
 
 		//====> Support Thumbnails <====//
@@ -55,76 +56,7 @@ endif;
 add_action('after_setup_theme', 'phenix_support');
 
 //=====> Phenix Assets <=====//
-if (!function_exists('phenix_assets')) :
-	/**
-	 * Enqueue styles and scripts of phenix design system.
-	 * @since Phenix WP 1.0
-	 * @return void
-	*/
-
-	function phenix_assets() {
-		//====> define props <====//
-		$theme_version  = wp_get_theme()->get( 'Version' );
-		$version_string = is_string( $theme_version ) ? $theme_version : false;
-		$assets_path    = get_template_directory_uri() . "/assets";
-		
-		//====> Phenix CSS <====//
-		if (!is_rtl()) :
-			//====> Phenix LTR <====//
-			wp_register_style('phenix', $assets_path. '/css/phenix.css', array(), $version_string);
-		else :
-			//====> Phenix RTL <====//
-			wp_register_style('phenix', $assets_path. '/css/phenix-rtl.css', array(), $version_string);
-		endif;
-
-		//====> Custom Fonts <====//
-		wp_register_style('phenix-fonts', $assets_path. '/css/fonts.css', array(), $version_string);
-
-		//====> FontAwesome <====//
-		wp_register_style('fontawesome', $assets_path. '/css/fontawsome.css', array(), $version_string);
-
-		//====> Enqueue CSS <====//
-		wp_enqueue_style('phenix');
-		wp_enqueue_style('phenix-fonts');
-		wp_enqueue_style('fontawesome');
-
-		//====> Enqueue Phenix JS <====//
-		wp_enqueue_script('phenix', $assets_path.'/js/phenix.js', false , NULL , true);
-	}
-endif;
-
-add_action('wp_enqueue_scripts', 'phenix_assets');
-add_action('enqueue_block_editor_assets', 'phenix_assets');
-
-//=====> Phenix Filters <=====//
-if (!function_exists('phenix_filters')) :
-	/**
-	 * WP Filters.
-	 * @since Phenix WP 1.0
-	 * @return void
-	 * 
-	 ** 01 - Excrept Strip
-	 ** 02 - CF7 Customize
-	*/
-
-	//====> Excrept Strip <====//
-	remove_filter('the_excerpt', 'wpautop');
-	
-	//====> CF7 Customize <====//
-	if (class_exists('WPCF7')) {
-		//===== C7 Elements Fix =====//
-		add_filter('wpcf7_form_elements', function($content) {
-			$content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
-			return $content;
-		});
-
-		add_filter('wpcf7_autop_or_not', '__return_false');
-
-		//===== CSS/JS Remove =====//
-		add_filter('wpcf7_load_css', '__return_false');
-		add_filter('wpcf7_load_js', '__return_false');
-	}
-endif;
+include( dirname(__FILE__) . '/inc/theme-assets.php' );
 
 //====> Multilang Support <====//
 if (!function_exists('px__')) {
@@ -143,8 +75,114 @@ if (!function_exists('px__')) {
 	}
 }
 
-//====> Add Phenix Blocks <====//
-require get_template_directory() . '/src/blocks/blocks.php';
+//====> Add Custom Blocks <====//
+// include( dirname(__FILE__) . '/src/blocks/blocks.php' );
+// include( dirname(__FILE__) . '/src/blocks/patterns.php' );
+
+//====> Add Custom Post-Types <====//
+// include( dirname(__FILE__) . '/inc/post-types.php' );
+
+//====> Getting rid of archive "label" <====//
+if (!function_exists('refactor_archive_title')) :
+	/**
+	 * WP Filters.
+	 * @since Phenix WP 1.0
+	 * @return void
+	 * 
+	 ** 01 - Excrept Strip
+	 ** 02 - CF7 Customize
+	*/
+	function refactor_archive_title( $title ) {
+		if ( is_category() ) {
+			$title = single_cat_title('', false);
+		} elseif ( is_tag() ) {
+			$title = single_tag_title('', false);
+		} elseif ( is_post_type_archive() ) {
+			$title = post_type_archive_title('', false);
+		} elseif ( is_tax() ) {
+			$title = single_term_title('', false);
+		}
+		return $title;
+	}
+	
+	add_filter( 'get_the_archive_title', 'refactor_archive_title' );
+endif;
+
+/*====> Pagination <====*/
+if (!function_exists('pagination')) :
+	/**
+	 * WP Filters.
+	 * @since Phenix WP 1.0
+	 * @return void
+	 * 
+	 ** 01 - Excrept Strip
+	 ** 02 - CF7 Customize
+	*/
+
+	function pagination($query) {
+		//===> Configration <===//
+		$pages = paginate_links( array(
+			'end_size'     => 2,
+			'mid_size'     => 1,
+			'prev_next'    => true,
+			'show_all'     => false,
+			'type'         => 'array',
+			'format'       => '?page=%#%',
+			'total'        => $query->max_num_pages,
+			'current'      => max(1, get_query_var('paged')),
+			'prev_text'    => sprintf('<i class="fas fa-angle-left"></i>%1$s', px__( '' )),
+			'next_text'    => sprintf('%1$s<i class="fas fa-angle-right"></i>', px__( '' )),
+			'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+		));
+	
+		//===> Generate <===//
+		if(is_array($pages)) {
+			//===> List <===//
+			echo '<ul class="reset-list pagination flexbox align-center col-12 mb-30">';
+			//===> Pages Start <===//
+			foreach ($pages as $page) {
+				//===> if its the Current Page <===//
+				if (strpos($page, 'current') !== false) {
+					$page = str_replace("span", "a", $page);
+					echo "<li class='btn square small weight-medium radius-sm primary active me-10'>$page</li>";
+				}
+				//===> else other pages <===//
+				else {
+					echo "<li class='btn square light small weight-medium radius-sm me-10 border-1 border-solid border-alpha-10'>$page</li>";
+				}
+			}
+			//===> Pages End <===//
+			echo '</ul>';
+			//===> List <===//
+		}
+	}
+endif;
 
 //====> Phenix Optimizer <====//
 include( dirname(__FILE__) . '/inc/optimize.php' );
+
+//====> Excrept Strip <====//
+remove_filter('the_excerpt', 'wpautop');
+
+//====> Limited Excerpt <====//
+function px_excerpt_length($length) {return 18;}
+add_filter('excerpt_length', 'px_excerpt_length', 175);
+
+//====> Excerpt More <====//
+function wpdocs_excerpt_more($more) {return '...';}
+add_filter('excerpt_more', 'wpdocs_excerpt_more');
+
+//====> CF7 Customize <====//
+if (class_exists('WPCF7')) {
+	//===== C7 Elements Fix =====//
+	add_filter('wpcf7_form_elements', function($content) {
+		$content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+		return $content;
+	});
+
+	add_filter('wpcf7_autop_or_not', '__return_false');
+
+	//===== CSS/JS Remove =====//
+	add_filter('wpcf7_load_css', '__return_false');
+	add_filter('wpcf7_load_js', '__return_false');
+}

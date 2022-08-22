@@ -61,16 +61,17 @@ endif;
 if (!function_exists('scripts_optimize') && !is_admin()) :
     function scripts_optimize() {
         //===> Remove jQuery <===//
-        if(!class_exists('QueryMonitor')) {
-            wp_deregister_script('jquery-migrate');
+        if(!is_admin()) {
+            wp_deregister_script('jquery');
             wp_deregister_script('jquery-core');
+            wp_deregister_script('jquery-migrate');
         }
 
         //===> Remove WP Embed <===//
         wp_deregister_script('wp-embed');
     }
     
-    add_action( 'wp_footer','scripts_optimize');
+    add_action('wp_enqueue_scripts', 'scripts_optimize');
 endif;
 
 //=====> Styles Optimizer <=====//
@@ -79,7 +80,7 @@ if (!function_exists('styles_optimize')) :
         //===> Remove in Frontend Only <===//
         if(!is_admin()) {
             //===> Gutenberg Library <===//
-            wp_dequeue_style('wp-block-library');
+            // wp_dequeue_style('wp-block-library');
 
             //===> Newsletter Plugin <===//
             wp_dequeue_style('newsletter');

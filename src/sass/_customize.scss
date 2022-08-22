@@ -12,20 +12,20 @@
 :root {
     /*==== Global ====*/
     --body-bg : #f6f6f6;
-    --icons-font: "Font Awesome 6";
+    --icons-font: "Font Awesome 5";
 
     /*==== Primary Color ====*/
-    --primary-color   : #E8282B;
-    --primary-hover   : #D61B20;
+    --primary-color   : #0C97F9;
+    --primary-hover   : #1A69F4;
     --primary-reverse : #FFFFFF;
-    --primary-offwhite: #FFEFEF;
+    --primary-offwhite: #e1eef7;
+    --offwhite-border : #a8c2e0;
 
     /*==== Secondary Color ====*/
-    --secondary-color   : #1A5AAF;
-    --secondary-hover   : #180B80;
+    --secondary-color   : #F8C25B;
+    --secondary-hover   : #FB955D;
     --secondary-reverse : #000000;
-    --secondary-offwhite: #FBFAFE;
-    --secondary-dark: #120E2E;
+    --secondary-offwhite: #fddfa8;
 
     /*==== Gradients ====*/
     --primary-gradient   : var(--primary-color), var(--primary-hover);
@@ -73,8 +73,6 @@
     --direction-end: #{$direction-end};
 }
 
-.bg-secondary-dark {background-color: var(--secondary-dark);}
-
 /*==== Integration ====*/
 @import 'integration/wordpress';  //===> WordPress Integration
 @import 'integration/splide';    //===> Splide Slider
@@ -105,8 +103,7 @@
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 
 /*==== Fix Button Text ====*/
-.btn.square {line-height: calc(var(--height) - 1px);}
+// .btn {line-height: calc(var(--height) - 2px);}
 
 /*==== Backdrop [Overlay] Opacity ====*/
 .overlay-dark::before {opacity: 0.75;}
-.cursor-pointer {cursor: pointer;}

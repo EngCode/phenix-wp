@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43,6 +45,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * ===> 04 - Component Output
 */
 //===> WordPress Modules <===//
+
  //===> Phenix Background <===//
 
 var FlexAlignment = /*#__PURE__*/function (_Component) {
@@ -61,6 +64,7 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
     value: function render() {
       //===> Properties <===//
       var _this$props = this.props,
+          flow = _this$props.flow,
           value = _this$props.value,
           onChange = _this$props.onChange; //===> Alignment Buttons <===//
 
@@ -150,6 +154,27 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         else newVal = "".concat(value, " ").concat(newVal); //===> Return Options <===//
 
         return onChange("".concat(newVal));
+      }; //===> Default Flow <===//
+
+
+      var isReversed = function isReversed() {
+        if (value.includes('flow-reverse')) return true;else return false;
+      }; //===> Set Flow <===//
+
+
+      var setFlow = function setFlow(toggle) {
+        //===> Get Current Value <===//
+        var current = value; //===> .if already reversed. <===//
+
+        if (isReversed()) {
+          current = current.replaceAll('flow-reverse');
+        } //===> .if not make it. <===//
+        else {
+          current = "".concat(value, " flow-reverse");
+        } //===> Return Options <===//
+
+
+        return onChange(current);
       }; //===> Options Changer <===//
 
 
@@ -174,7 +199,11 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/React.createElement("div", {
         className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("span", {
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+        label: "Flow Reverse ?",
+        checked: isReversed(),
+        onChange: setFlow
+      }), /*#__PURE__*/React.createElement("span", {
         className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
       }), /*#__PURE__*/React.createElement("div", {
         className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
@@ -304,7 +333,7 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
             }
           }), /*#__PURE__*/React.createElement("button", {
             onClick: open,
-            "class": "btn square primary small radius-sm fs-12 fal fa-upload"
+            "class": "btn square primary small radius-sm fs-12 fas fa-upload"
           })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
             src: value,
             className: "radius-sm radius-top",
@@ -790,6 +819,7 @@ function Edit(_ref) {
 
 
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
   var TagName = attributes.tagName; //===> Set Phenix View <===//
 
   var setPhenixView = function setPhenixView() {
@@ -869,16 +899,33 @@ function Edit(_ref) {
     return setAttributes({
       flex_align: alignment
     });
-  }; //===> onLoad Set Background <===//
+  }; //===> Background Image <===//
 
 
   if (attributes.px_bg_type === 'image') {
     blockProps["data-src"] = attributes.px_bg;
-    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-      return setPhenixView();
-    });
-  } //===> Render <===//
+    setPhenixView();
+  } //===> Component is Ready <===//
 
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    //===> Loading FontAwesome <===//
+    if (window.frames['editor-canvas']) {
+      var fontAwesome = document.querySelector("#fontawesome-css");
+
+      if (fontAwesome) {
+        //===> Check in the Editor <===//
+        var canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"); //===> if Font Awesome not Loaded <===//
+
+        if (!canvasAwesome && fontAwesome) {
+          var newAwesome = document.importNode(fontAwesome, true);
+          window.frames['editor-canvas'].document.head.appendChild(newAwesome);
+        }
+      }
+    }
+  }); //===> Container <===//
+
+  if (attributes.container) innerBlocksProps.className += " ".concat(container_options.size).concat(container_options.flexbox, " ").concat(container_options.alignment); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -956,9 +1003,7 @@ function Edit(_ref) {
     onChange: set_background,
     type: attributes.px_bg_type,
     value: attributes.px_bg
-  }))), /*#__PURE__*/React.createElement(TagName, blockProps, attributes.container ? /*#__PURE__*/React.createElement("div", {
-    className: "".concat(container_options.size).concat(container_options.flexbox, " ").concat(container_options.alignment)
-  }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, null)) : /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, null)));
+  }))), /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("div", innerBlocksProps)));
 }
 
 /***/ }),
@@ -1123,20 +1168,12 @@ __webpack_require__.r(__webpack_exports__);
     var attributes = _ref.attributes;
     //===> Get Block Properties <===//
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
-    var TagName = attributes.tagName; //===> Container Options <===//
+    var TagName = attributes.tagName; //===> .Check Background Image. <===//
 
-    var container_options = {
-      size: attributes.size,
-      flexbox: attributes.container_flex ? 'flexbox' : ''
-    }; //===> .Check Background Image. <===//
-
-    if (attributes.px_bg_type === 'image') {
-      blockProps["data-src"] = attributes.px_bg;
-    } //===> Render <===//
-
+    if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg; //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.container ? /*#__PURE__*/React.createElement("div", {
-      className: "".concat(container_options.size, " ").concat(container_options.flexbox)
+      className: "".concat(attributes.size).concat(attributes.container_flex ? ' flexbox' : '', " ").concat(attributes.flex_align)
     }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)) : /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }
 });
