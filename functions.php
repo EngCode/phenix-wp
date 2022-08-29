@@ -37,7 +37,6 @@ if (!function_exists('phenix_support')) :
 
 		//====> Editor Styles <====//
 		add_editor_style('style.css');
-		
 
 		//====> Translation Support <====//
 		load_theme_textdomain('phenix', get_template_directory() . '/languages');
@@ -56,7 +55,7 @@ endif;
 add_action('after_setup_theme', 'phenix_support');
 
 //=====> Phenix Assets <=====//
-include( dirname(__FILE__) . '/inc/theme-assets.php' );
+// include( dirname(__FILE__) . '/inc/theme-assets.php' );
 
 //====> Multilang Support <====//
 if (!function_exists('px__')) {

@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "..\\..\\plugins\\pds-blocks"
 		},
 		{
-			"path": "..\\..\\plugins\\pds-blocks"
+			"path": "."
 		}
 	],
 	"settings": {
