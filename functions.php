@@ -43,5 +43,6 @@ endif;
 
 add_action('after_setup_theme', 'phenix_support');
 
+
 //=====> Phenix Assets <=====//
 // include( dirname(__FILE__) . '/inc/theme-assets.php' );
