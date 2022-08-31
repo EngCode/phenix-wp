@@ -32,6 +32,8 @@
 
 	"settings": {
 		"appearanceTools": true,
+		"duotone": [],
+		"customDuotone": false,
 
 		"color": {
 			"defaultDuotone": false,
