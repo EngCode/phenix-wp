@@ -96,3 +96,19 @@ if (!function_exists('post_cpt')) :
 
     add_action('init', 'post_cpt');
 endif;
+
+//=====> Phenix Scripts <=====//
+if (!function_exists('pds_blocks_script')) :
+    /**
+     * Activate the Javascript Plugins of Phenix
+     * @since Phenix Blocks 1.0
+     * @return void
+    */
+
+    function pds_blocks_script() {
+        get_template_part('template-part/pds-scripts');
+    }
+
+    //===> Include Phenix Core in the Plguin Page <===//
+    add_action('wp_enqueue_scripts', 'pds_blocks_script', array('phenix'), '1.0.0', true);
+endif;

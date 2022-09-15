@@ -1,8 +1,8 @@
 <?php defined('ABSPATH') || exit; ?>
 <!-- PDS Scripts -->
 <script defer>
-    document.addEventListener('DOMContentLoaded', ready => {
-        //====> Multimedia <====//
+document.addEventListener('DOMContentLoaded', ready => {
+    //====> Multimedia <====//
     Phenix('.px-media').multimedia();
 
     //===> Phenix Menu <===//
@@ -55,5 +55,5 @@
     Phenix('.view-status').animations({
         animateCSS: ["fading", "sliding", "utilities"]
     });
-    });
+});
 </script>
