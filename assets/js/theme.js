@@ -52,4 +52,12 @@ document.addEventListener('DOMContentLoaded', ready => {
     Phenix('.view-status').animations({
         animateCSS: ["fading", "sliding", "utilities"]
     });
+
+    //====> Version Changer <====//
+    Phenix('#version-select').on('change', changed => {
+        //===> Get Value <===//
+        let val = changed.target.value;
+        //===> Go to It <===//
+        window.location = val;
+    });
 });

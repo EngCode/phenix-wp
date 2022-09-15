@@ -1,0 +1,1 @@
+<?php echo '<span>'.px__('Theme Part Placeholder').'</span>'; ?>
