@@ -43,6 +43,13 @@ endif;
 
 add_action('after_setup_theme', 'phenix_support');
 
+//=====> Translation Support <=====//
+if (!function_exists('px__')) {
+    function px__($string) {
+        return __($string, 'phenix');
+    }
+}
+
 //=====> Theme Style.css <=====//
 if (!function_exists('theme_style')) :
 	/**

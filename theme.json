@@ -52,17 +52,17 @@
 			"palette": [
 				{
 					"slug": "primary",
-					"color": "#0064F9",
+					"color": "#0C97F9",
 					"name": "Primary"
 				},
 				{
 					"slug": "primary-hvr",
-					"color": "#328BF1",
+					"color": "#1A69F4",
 					"name": "Primary Hover"
 				},
 				{
 					"slug": "primary-offwhite",
-					"color": "#E1EEF7",
+					"color": "#e1eef7",
 					"name": "Primary Offwhite"
 				},
 				{
