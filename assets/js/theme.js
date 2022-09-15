@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', ready => {
     });
 
     //===> Animations <===//
-    Phenix('.view-status').animations({
+    Phenix('.px-animate').animations({
         animateCSS: ["fading", "sliding", "utilities"]
     });
 
@@ -60,4 +60,12 @@ document.addEventListener('DOMContentLoaded', ready => {
         //===> Go to It <===//
         window.location = val;
     });
+
+    //====> View-Port Animations <====//
+    Phenix('.animations-section [data-animation]').animations({
+        lazyloading: true,
+        duration: 700,
+    });
+
+    Phenix('.key-features [data-animation]').animations();
 });
