@@ -63,6 +63,16 @@ if (!function_exists('theme_style')) :
     add_action('wp_enqueue_scripts', 'theme_style');
 endif;
 
+//=====> Theme Scripts <=====//
+if (!function_exists('pds_theme_script')) :
+    function pds_theme_script() {
+        wp_enqueue_script('pds-script', get_template_directory_uri().'/assets/js/style.js', 'phenix' , NULL , true);
+    }
+
+    //===> Include Phenix Core in the Plguin Page <===//
+    add_action('wp_enqueue_scripts', 'pds_theme_script');
+endif;
+
 //====> Posts Type <====//
 if (!function_exists('post_cpt')) :
     //==== Admin Menu Optimizer ====//
@@ -95,20 +105,4 @@ if (!function_exists('post_cpt')) :
     }
 
     add_action('init', 'post_cpt');
-endif;
-
-//=====> Phenix Scripts <=====//
-if (!function_exists('pds_blocks_script')) :
-    /**
-     * Activate the Javascript Plugins of Phenix
-     * @since Phenix Blocks 1.0
-     * @return void
-    */
-
-    function pds_blocks_script() {
-        get_template_part('template-part/pds-scripts');
-    }
-
-    //===> Include Phenix Core in the Plguin Page <===//
-    add_action('wp_enqueue_scripts', 'pds_blocks_script', array('phenix'), '1.0.0', true);
 endif;
