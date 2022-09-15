@@ -66,7 +66,7 @@ endif;
 //=====> Theme Scripts <=====//
 if (!function_exists('pds_theme_script')) :
     function pds_theme_script() {
-        wp_enqueue_script('pds-script', get_template_directory_uri().'/assets/js/style.js', 'phenix' , NULL , true);
+        wp_enqueue_script('pds-script', get_template_directory_uri().'/assets/js/theme.js', 'phenix' , NULL , true);
     }
 
     //===> Include Phenix Core in the Plguin Page <===//
