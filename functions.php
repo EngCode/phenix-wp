@@ -43,6 +43,56 @@ endif;
 
 add_action('after_setup_theme', 'phenix_support');
 
+//=====> Theme Style.css <=====//
+if (!function_exists('theme_style')) :
+	/**
+	 * Setup Phenix Design Fonts and Third-Party
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
 
-//=====> Phenix Assets <=====//
-// include( dirname(__FILE__) . '/inc/theme-assets.php' );
+    function theme_style () {
+        //====> Theme Style.css <====//
+        if (!is_rtl()) :
+        wp_enqueue_style('theme-style', get_template_directory_uri() . '/style.css');
+        else :
+        wp_enqueue_style('theme-style', get_template_directory_uri() . '/style-rtl.css');
+        endif;
+    }
+
+    add_action('wp_enqueue_scripts', 'theme_style');
+endif;
+
+//====> Posts Type <====//
+if (!function_exists('post_cpt')) :
+    //==== Admin Menu Optimizer ====//
+    function admin_menu_optimizer(){ remove_menu_page('edit.php'); }
+    add_action( 'admin_menu', 'admin_menu_optimizer' );
+    
+	//===> Creat New Post Type <===//
+    function post_cpt() {
+        //==== CPT Options ====//
+        $args = array(
+            'label'         => px__('Blog Posts'),
+            'name'          => 'post',
+            'singular_name' => 'post',
+            'menu_position' => 6,
+            'menu_icon'     => 'dashicons-welcome-widgets-menus',
+            'public'        => true,
+            'has_archive'   => true,
+            'show_in_rest'  => true,
+            'hierarchical'  => true,
+            'template'      => array (
+                array('core/pattern',
+                    array ('slug' => 'phenix/blog-details'),
+                ),
+            ),
+            'supports'      => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
+            'taxonomies'    => array('tag','category'),
+        );
+
+        register_post_type('post', $args);
+    }
+
+    add_action('init', 'post_cpt');
+endif;

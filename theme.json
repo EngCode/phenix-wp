@@ -7,6 +7,16 @@
 			"name": "blank",
 			"title": "Blank",
 			"postTypes": ["page", "post"]
+		},
+		{
+			"name": "blog",
+			"title": "Blog Archive",
+			"postTypes": ["page", "post"]
+		},
+		{
+			"name": "blog-details",
+			"title": "Blog Details",
+			"postTypes": ["page", "post"]
 		}
 	],
 
@@ -31,8 +41,8 @@
 	},
 
 	"settings": {
-		"appearanceTools": true,
 		"duotone": [],
+		"appearanceTools": true,
 		"customDuotone": false,
 
 		"color": {
@@ -42,12 +52,12 @@
 			"palette": [
 				{
 					"slug": "primary",
-					"color": "#0C97F9",
+					"color": "#0064F9",
 					"name": "Primary"
 				},
 				{
 					"slug": "primary-hvr",
-					"color": "#1A69F4",
+					"color": "#328BF1",
 					"name": "Primary Hover"
 				},
 				{
@@ -59,6 +69,11 @@
 					"slug": "primary-txt",
 					"color": "#FFFFFF",
 					"name": "Primary Text"
+				},
+				{
+					"slug": "primary-dark",
+					"color": "#14243C",
+					"name": "Primary Dark"
 				},
 				{
 					"slug": "secondary",
@@ -83,7 +98,7 @@
 				{
 					"slug": "secondary-dark",
 					"color": "#120E2E",
-					"name": "Secondary Text"
+					"name": "Secondary Dark"
 				},
 				{
 					"slug": "info",
@@ -206,17 +221,17 @@
 			]
 		},
 
-		"typography": {
+		"typography" : {
 			"dropCap": false,
 			"fontFamilies": [
 				{
 					"fontFamily": "var(--primary-font)",
-					"name": "Primary Font",
+					"name": "Tarek V",
 					"slug": "primary-font"
 				},
 				{
 					"fontFamily": "var(--secondary-font)",
-					"name": "Secondary Font",
+					"name": "Roboto",
 					"slug": "secondary-font"
 				}
 			],
@@ -238,6 +253,17 @@
 					"slug": "x-large"
 				}
 			]
+		},
+
+		"layout": {
+			"contentSize": "100%",
+			"wideSize": "100%"
+		},
+	
+		"spacing": {
+			"customPadding": false,
+			"customMargin": false,
+			"units": [ "px", "em", "vh", "vw", "%" ]
 		}
 	}
 }

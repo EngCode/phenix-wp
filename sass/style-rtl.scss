@@ -1,0 +1,50 @@
+/*!
+  Theme Name: Phenix WordPress
+  Theme URI: http://phenixthemes.com
+  Author: Phenix Themes {Abdullah.Ramadan}
+  Author URI: http://phenixthemes.com
+  Description: block based theme build with phenix design system and wordpress v5.9+
+  Version: 0.1.0
+  Requires at least: 5.9
+  Tested up to: 6.0
+  Requires PHP: 7.1
+  License: GNU General Public License v3 or later
+  License URI: http://www.gnu.org/licenses/gpl-3.0.html
+  Text Domain: phenix
+  Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, phenix
+  Phenix WordPress Theme, (C) 2022 phenixthemes.com
+  Phenix Theme is distributed under the terms of the GNU GPL.
+*/
+
+/*==== Direction Options ====*/
+$direction: rtl;
+$direction-reverse: ltr;
+$direction-start: right;
+$direction-end: left;
+
+/*==== Font Options ====*/
+:root {
+    //==== Font Families ====//
+    --primary-font: 'Almarai';
+    --secondary-font: 'Almarai';
+
+    /*==== Responsive REM:Base ====*/
+    --rem-xl : 16px; //===> xLarge Screens and Up
+    --rem-lg : 16px; //===> Large Screens and Up
+    --rem-md : 15px; //===> Medium Screens and Up
+    --rem-sm : 15px; //===> Small Screens and Up
+    --rem-xs : 15px; //===> Extra Small Screens and Up
+
+    //==== Standard Line-Height ====//
+    --line-height: 1.65;
+}
+
+/*==== SASS Assets ====*/
+@import 'assets/mixin';     //===> SASS Mixin
+@import 'assets/selectors'; //===> SASS Selectors
+
+/*==== Core WordPress Fixes ====*/
+@import 'assets/core-fixes';
+
+/*==== Theme Custom Design ====*/
+@import 'theme-style';

@@ -45,17 +45,10 @@
     }
   ],
   "scripts": {
-    "phenix-start": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\"",
-    "phenix-ts": "pnpx webpack --config typescript.webpack.js --watch",
-    "phenix-sass": "pnpx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true"
+    "sass-watch": "pnpx node-sass --watch ./sass/ -o ./ --output-style compressed --source-map true"
   },
   "devDependencies": {
     "concurrently": "^6.5.1",
-    "node-sass": "^7.0.1",
-    "ts-loader": "^7.0.5",
-    "typescript": "^3.9.10",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+    "node-sass": "^7.0.1"
   }
 }
