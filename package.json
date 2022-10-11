@@ -45,7 +45,7 @@
     }
   ],
   "scripts": {
-    "sass-watch": "pnpx node-sass --watch ./sass/ -o ./ --output-style compressed --source-map true"
+    "sass-watch": "npx node-sass --watch ./sass/ -o ./ --output-style compressed --source-map true"
   },
   "devDependencies": {
     "concurrently": "^6.5.1",
