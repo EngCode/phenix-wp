@@ -37,7 +37,8 @@
 		"color": {
 			"background" : "#F7F9FC",
 			"text": "#555555"
-		}
+		},
+		"spacing": {"blockGap": 0}
 	},
 
 	"settings": {
@@ -261,6 +262,7 @@
 		},
 	
 		"spacing": {
+			"blockGap": false,
 			"customPadding": false,
 			"customMargin": false,
 			"units": [ "px", "em", "vh", "vw", "%" ]

@@ -170,33 +170,34 @@ $header-height: 60px;
         }
     }
 
-    /*==== Reset Menus ====*/
-    ul { @extend %reset-list; }
-
     /*==== Main Menu ====*/
     .main-menu {
         font-size: 15px;
-        font-weight: var(--medium-weight);
         line-height: 30px;
-        border-bottom: 1px solid rgba(#000, 0.1);
         transition: all 0.3s;
-        
-        /*==== Icons ====*/
-        img {
-            @extend %inline-block;
-            max-height: 25px;
-            margin-right: 3px;
-        }
-
+        font-weight: var(--medium-weight);
+        border-bottom: 1px solid rgba(#000, 0.1);
         /*==== Items ====*/
         li {
             margin: 0;
             padding: 3px 20px;
-            &.px-item-active {
-                background: linear-gradient(rgba(#00c4ff, 0.1) 0%, rgba(#1a69f4, 0.1) 100%);
-                line-height: 38px;
+            /*==== Menu Icons ====*/
+            > a::before {
+                top: -1px;
+                content: '';
+                width: 1.5em;
+                height: 1.5em;
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                background-size: 100% auto;
+                background-position: center;
+                background-repeat: no-repeat;
+                margin-#{$direction-end}: 5px;
             }
-            &:last-child:not(.px-item-active) { margin-bottom: 5px; }
+            &:nth-child(1) > a::before {background-image: url('assets/img/px-logo/pds-icon.svg');}
+            &:nth-child(2) > a::before {background-image: url('assets/img/px-logo/px-blocks-icon.svg');}
+            &:nth-child(3) > a::before {background-image: url('assets/img/px-logo/phenix-icon.svg');}
         }
     }
 

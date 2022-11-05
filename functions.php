@@ -27,7 +27,9 @@ if (!function_exists('phenix_support')) :
 
 	function phenix_support() {
 		//====> Support Block Styles <====//
+        add_theme_support('editor-styles');
 		add_theme_support('wp-block-styles');
+        add_theme_support('disable-layout-styles');
 		remove_theme_support('core-block-patterns');
 
 		//====> Editor Styles <====//
