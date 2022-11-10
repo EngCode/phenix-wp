@@ -31,10 +31,12 @@ document.addEventListener('DOMContentLoaded', ready => {
     });
 
     /*====> Scroll Spy Active <====*/
-    Phenix(content_menu).scrollSpy({
-        flow : 'start',
-        offset : 70,
-    });
+    if (content_menu) {
+        Phenix(content_menu).scrollSpy({
+            flow : 'start',
+            offset : 70,
+        });
+    }
 
     //====> Multimedia <====//
     Phenix('.px-media').multimedia();
