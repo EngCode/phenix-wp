@@ -1,3 +1,6 @@
+/*==== Core GB Fixes ====*/
+@import 'wordpress-int';
+
 /*==== Theme Options ====*/
 body:not(.wp-admin), #site-editor {
     /*==== Global ====*/
@@ -60,7 +63,7 @@ body:not(.wp-admin), #site-editor {
 .main-header.is-sticky {z-index: var(--header-index);}
 .px-breadcrumb.custom-icon {--divider-icon : '\f101';}
 
-/*==== Addtional UI Components ====*/
+/*==== Addtional UI ====*/
 @import 'custom-ui';
 
 /*==== Docs Only ====*/

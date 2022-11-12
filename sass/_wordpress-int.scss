@@ -1,0 +1,46 @@
+/*==== Layout Fix ====*/
+.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
+
+/*==== Admin-Bar Fix ====*/
+@media screen and (max-width: 782px) {
+	#wpadminbar {margin-top: -46px;}
+}
+
+/*==== Fix View-Port Animation ====*/
+.wp-admin .view-status {visibility: visible;}
+
+/*==== Plugins Fix ====*/
+[name="newsletter[]"] {display:none!important;}
+[name*="honeypot"] {left: 100%;visibility:hidden;position: absolute;}
+.wpcf7 .screen-reader-response, .wpcf7-response-output {display: none;}
+
+/*==== Table Block ====*/
+.wp-block-table {
+	overflow-x: auto;
+	@include margin-inline(0);
+
+	@include medium('down') {
+		table {width:970px;}
+	}
+}
+
+/*==== Reset Typography ====*/
+.rich-content {
+    /*==== Spaces ====*/
+    h1,h2,h3,h4,h5,h6 {margin-bottom: 0.5rem;}
+    p, ul {margin-bottom: REM(25);}
+
+	.wp-block-columns {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+
+	.wp-block-column {padding: 0 15px;}
+    /*==== Headine Sizes ====*/
+    // h1 {font-size: REM(32);}
+    // h2 {font-size: REM(28);}
+    // h3 {font-size: REM(25);}
+    // h4 {font-size: REM(23);}
+    // h5 {font-size: REM(20);}
+    // h6 {font-size: REM(17);}
+}
