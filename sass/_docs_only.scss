@@ -1,25 +1,35 @@
 /*==== Docs Only ====*/
-$header-height: 60px;
+$header-size: 60px;
 
 %sticky-element {
-    position: -webkit-sticky;
+    top: $header-size;
     position: sticky;
-    top: $header-height;
+    position: -webkit-sticky;
+}
+
+/*==== Main Header ====*/
+.main-header {
+    z-index: var(--header-index);
+    &:not(.is-sticky) {position: relative;}
+    box-shadow: 0 2px 3px 0 rgba(#e1eef7, 0.5);
+    background-image: linear-gradient( var(--primary-offwhite), #FFF);
 }
 
 /*==== Navigator ====*/
 .navigator-menu {
     overflow-y: auto;
     @extend %sticky-element;
+    z-index: var(--header-index);
     background-color: #fff;
-    @include padding-inline('0!important');
+    border-top: 1px solid var(--primary-offwhite);
+    box-shadow: 2px 0 3px 0 rgba(#e1eef7, 0.5);
+    background-image: linear-gradient( 0deg, var(--primary-offwhite), #FFF);
     /*==== Size ====*/
-    @include large() {height: calc(100vh - #{$header-height})};
+    @include large() {height: calc(100vh - #{$header-size})};
 
     /*==== Search ====*/
     .search-form {
-        padding: 15px;
-        @include large() {padding: 15px 20px};
+        padding: 15px 0;
     }
 
     /*==== Control Wraper ====*/
@@ -89,10 +99,12 @@ $header-height: 60px;
     .px-navigation {
         /*==== Options ====*/
         --height : 28px;
+        --space-in: 0;
+        padding-top: 10px;
+        --color: var(--dark-color);
         --background-hvr: transparent;
         --font-weight: var(--medium-weight);
-        /*==== Custom CSS ====*/
-        padding: 10px;
+        
         /*==== Direct Items ====*/
         > ul > li {
             margin-bottom: 0;
@@ -144,9 +156,11 @@ $header-height: 60px;
     overflow-y: auto;
     padding: 15px 20px;
     @extend %sticky-element;
-    background-color: #fcfcfc;
+    background-color: var(--primary-offwhite);
+    border-#{$direction-start}-color: var(--primary-offwhite);
+    background-image: linear-gradient(rgba(#FFF, 0.5), rgba(#FFF, 0.5));
     /*==== Size ====*/
-    @include large() {height: calc(100vh - #{$header-height})};
+    @include large() {height: calc(100vh - #{$header-size})};
 
     /*==== Title ====*/
     h3 {
@@ -187,6 +201,8 @@ $header-height: 60px;
 .content-side {
     padding-top: 20px;
     padding-bottom: 15px;
+    background-color: var(--primary-offwhite);
+    background-image: linear-gradient(rgba(#FFF, 0.7), rgba(#FFF, 0.7));
     //====> Space Fix <====//
     @include large() {padding: 30px!important;}
     .docs-list {
