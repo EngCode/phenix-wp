@@ -1,9 +1,53 @@
 <!-- wp:template-part {"slug":"header","theme":"phenix-wp","tagName":"header","className":"main-header bg-white"} /-->
 
-<!-- wp:phenix/container {"isSection":true,"size":"container-xl","background":"bg-primary","color":"color-white","className":"pdy-30"} -->
-<div class="wp-block-phenix-container pdy-30 bg-primary"><div class="container-xl color-white"><!-- wp:phenix/page-head /--></div></div>
+<!-- wp:phenix/container {"size":"container-fluid"} -->
+<div class="wp-block-phenix-container container-fluid">
+    <!-- wp:phenix/row -->
+    <div class="wp-block-phenix-row row">
+        <!-- wp:phenix/column {"size":"col-12 col-md-4 col-lg-3","className":"w-lg-235 w-xl-275 navigator-menu divider-e"} -->
+        <div class="wp-block-phenix-column w-lg-235 w-xl-275 navigator-menu divider-e col-12 col-md-4 col-lg-3">
+            <!-- wp:phenix/theme-part {"part_name":"sidebar-search"} /-->
+
+            <!-- wp:list {"className":"reset-list main-menu pdb-15 links-inherit"} -->
+            <ul class="reset-list main-menu pdb-15 links-inherit">
+                <!-- wp:list-item {"className":"color-primary"} -->
+                <li class="color-primary"><a href="http://pds.local/" data-type="page" data-id="2">Documentation</a>
+                </li>
+                <!-- /wp:list-item -->
+
+                <!-- wp:list-item {"className":"color-info"} -->
+                <li class="color-info"><a href="http://pds.local/wp-docs" data-type="URL"
+                        data-id="http://pds.local/wp-docs">Phenix WordPress</a></li>
+                <!-- /wp:list-item -->
+
+                <!-- wp:list-item {"className":"color-secondary"} -->
+                <li class="color-secondary"><a href="https://phenixthemes.com" data-type="URL"
+                        data-id="https://phenixthemes.com">Phenix Themes</a></li>
+                <!-- /wp:list-item -->
+            </ul>
+            <!-- /wp:list -->
+
+            <!-- wp:phenix/navigation {"menu_id":"design-docs","arrow_icon":"far fa-folder","menus_list":[{"label":"Main Menu","value":"main-menu"},{"label":"Design Docs","value":"design-docs"},{"label":"Blocks Docs","value":"blocks-docs"}]} /-->
+        </div>
+        <!-- /wp:phenix/column -->
+
+        <!-- wp:phenix/column {"size":"col-adaptive col-md-6 col-lg-6","spacing_pd":" comb-lg-pd comb-sm-pd pdy-30 pdx-30 pdy-lg-40  pdx-lg-40","className":"content-side position-rv"} -->
+        <div
+            class="wp-block-phenix-column content-side position-rv col-adaptive col-md-6 col-lg-6  comb-lg-pd comb-sm-pd pdy-30 pdx-30 pdy-lg-40  pdx-lg-40">
+            <!-- wp:post-content {"layout":{"inherit":true}} /-->
+        </div>
+        <!-- /wp:phenix/column -->
+
+        <!-- wp:phenix/column {"size":"col-3 col-md-3 col-lg-3","className":"hidden-sm-down on-page-menu w-lg-200 divider-s"} -->
+        <div class="wp-block-phenix-column hidden-sm-down on-page-menu w-lg-200 divider-s col-3 col-md-3 col-lg-3">
+            <!-- wp:heading {"level":3,"textColor":"primary-dark","className":"mb-10"} -->
+            <h3 class="mb-10 has-primary-dark-color has-text-color">Table of Content</h3>
+            <!-- /wp:heading -->
+        </div>
+        <!-- /wp:phenix/column -->
+    </div>
+    <!-- /wp:phenix/row -->
+</div>
 <!-- /wp:phenix/container -->
 
-<!-- wp:post-content {"layout":{"inherit":true}} /-->
-
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","theme":"phenix-wp","tagName":"footer"} /-->

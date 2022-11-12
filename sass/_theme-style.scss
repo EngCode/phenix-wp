@@ -117,27 +117,20 @@ $header-height: 60px;
 
 /*==== Navigator ====*/
 .navigator-menu {
-    background-color: #fff;
     overflow-y: auto;
-    padding: 0 !important;
-    z-index: 100;
     @extend %sticky-element;
+    background-color: #fff;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     /*==== Size ====*/
     @include large() {height: calc(100vh - #{$header-height})};
-
-    /*==== Links ====*/
-    li > a {
-        color: inherit;
-        display: block;
-        transition: all 0.4s linear;
-    }
 
     /*==== Search ====*/
     .search-form {
         padding: 15px;
         @include large() {padding: 15px 20px};
     }
-    
+
     /*==== Control Wraper ====*/
     .control-wraper {
         position: relative;
@@ -202,38 +195,34 @@ $header-height: 60px;
     }
 
     /*==== Docs Menu ====*/
-    .docs-menu {
-        padding: 15px;
+    .px-navigation {
+        /*==== Options ====*/
+        --height : 28px;
+        --background-hvr: transparent;
+        --font-weight: var(--medium-weight);
+        /*==== Custom CSS ====*/
+        padding: 10px;
         /*==== Direct Items ====*/
-        > li {
-            font-size: 14px;
-            line-height: 28px;
-            font-weight: var(--medium-weight);
-            padding: 0 10px;
-            /*==== Links ====*/
+        > ul > li {
+            margin-bottom: 0;
+            /*==== Dropdown Icons ====*/
             > a::before {
-                content: '\f07b';
-                font-family: var(--icons-font);
-                margin-right: 7px;
-                font-weight: 400;
+                float: none;
                 font-size: 1.1em;
+                margin-#{$direction-end}: 7px;
             }
             /*==== Submenus ====*/
-            ul {
-                display: none;
-                font-size: 14px;
-                line-height: 25px;
-                color: var(--gray-color);
+            .submenu {
+                --height : 28px;
+                --color-hvr : var(--dark-color);
                 font-weight: normal;
-                margin-left: 25px;
-                margin-bottom: 5px;
-                .px-item-active,li:hover {color: var(--dark-color);}
-                @include xlarge() {margin-left: 30px;}
+                padding-top: 0!important;
+                padding-bottom: 0!important;
+                margin-#{$direction-start}: 20px;
             }
             /*==== Active ====*/
             &.px-item-active {
                 color: var(--primary-color);
-                .submenu {display: block!important;}
                 > a::before {
                     content: '\f07c';
                     font-weight: 600;
