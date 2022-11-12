@@ -1,56 +1,5 @@
-/*==== Media Queries ====*/
-@import './assets/mixin';
-
-/*==== Defines Sizes ====*/
+/*==== Docs Only ====*/
 $header-height: 60px;
-
-/*==== Direction Options ====*/
-$direction: ltr;
-$direction-reverse: rtl;
-$direction-start: left;
-$direction-end: right;
-
-.white-bg {background-color: #fff;}
-
-
-/*==== SASS Selectors ====*/
-%reset {
-    all: unset;
-    /*==== if (All: unset) not Supported ====*/
-    @supports not (all: unset) {
-        list-style: none;
-        padding:0;
-        margin:0;
-    }
-}
-
-%reset-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-%reset-control {
-    border: 0 none;
-    padding: 0;
-    transition: outline 0.3s linear;
-    &:focus {outline: 1px dashed var(--primary-color);}
-}
-
-%inline-block {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-%select-theme {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-        appearance: none;
-    background-repeat: no-repeat;
-    background-image: url('../img/select.svg');
-    background-size: 9px;
-    background-position: var(--direction-end) 10px center;
-}
 
 %sticky-element {
     position: -webkit-sticky;
@@ -58,71 +7,21 @@ $direction-end: right;
     top: $header-height;
 }
 
-/*==== Colors Options ====*/
-:root {
-    --wp-color : #8772F7;
-}
-
-/*==== Page Options ====*/
-html {line-height: 1.5;}
-
-/*==== Assets [Large Screens] ====*/
-@include large() {
-    .mxw-lg-235 {max-width: 235px;}
-    .mxw-lg-200 {max-width: 200px;}
-};
-
-@include xlarge() {
-    .mxw-xl-275 {max-width: 275px;}
-};
-
-.strong-weight {font-weight: var(--strong-weight);}
-.bold-weight   {font-weight: var(--bold-weight);}
-.medium-weight {font-weight: var(--medium-weight);}
-.normal-weight {font-weight: var(--normal-weight);}
-
-.wp-color {color: var(--wp-color);}
-.tx-align-center {text-align: center;}
-.radius-g  {border-radius: 4px;}
-.radius-gl {border-radius: 8px;}
-
-/*==== Header ====*/
-.main-header {
-    /*==== Component Options ====*/
-    border-bottom: 1px solid #F1F1F1;
-    @include small('down') {padding: 0 15px};
-    &.is-sticky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: var(--header-index);
-    }
-}
-
 /*==== Navigator ====*/
 .navigator-menu {
-    background-color: #fff;
     overflow-y: auto;
-    padding: 0 !important;
-    z-index: 100;
     @extend %sticky-element;
+    background-color: #fff;
+    @include padding-inline('0!important');
     /*==== Size ====*/
     @include large() {height: calc(100vh - #{$header-height})};
-
-    /*==== Links ====*/
-    li > a {
-        color: inherit;
-        display: block;
-        transition: all 0.4s linear;
-    }
 
     /*==== Search ====*/
     .search-form {
         padding: 15px;
         @include large() {padding: 15px 20px};
     }
-    
+
     /*==== Control Wraper ====*/
     .control-wraper {
         position: relative;
@@ -130,14 +29,14 @@ html {line-height: 1.5;}
         @include large() {width: 100%;}
         /*==== Controler ====*/
         input {
-            @extend %reset-control;
             width: 100%;
-            padding-left: 35px;
-            padding-right: 15px;
-            border-radius: 5px;
-            background-color: #F6F6F6;
             height: REM(36);
             font-size: 13px;
+            border-radius: 5px;
+            @extend %reset-control;
+            background-color: #F6F6F6;
+            padding-#{$direction-end}: 15px;
+            padding-#{$direction-start}: 35px;
             @include large() {
                 height: 40px;
                 font-size: 14px;
@@ -145,79 +44,76 @@ html {line-height: 1.5;}
         }
         /*==== Icon ====*/
         &::before {
-            opacity: 0.3;
-            position: absolute;
             top: 50%;
-            left: 12px;
-            transform: translateY(-50%);
+            opacity: 0.3;
             font-size: 12px;
+            position: absolute;
+            #{$direction-start}: 12px;
+            transform: translateY(-50%);
             @include large() {font-size: 14px;}
         }
     }
 
-    /*==== Reset Menus ====*/
-    ul { @extend %reset-list; }
-
     /*==== Main Menu ====*/
     .main-menu {
         font-size: 15px;
-        font-weight: var(--medium-weight);
         line-height: 30px;
-        border-bottom: 1px solid rgba(#000, 0.1);
         transition: all 0.3s;
-        
-        /*==== Icons ====*/
-        img {
-            @extend %inline-block;
-            max-height: 25px;
-            margin-right: 3px;
-        }
-
+        font-weight: var(--medium-weight);
+        border-bottom: 1px solid rgba(#000, 0.1);
         /*==== Items ====*/
         li {
             margin: 0;
             padding: 3px 20px;
-            &.px-item-active {
-                background: linear-gradient(rgba(#00c4ff, 0.1) 0%, rgba(#1a69f4, 0.1) 100%);
-                line-height: 38px;
+            /*==== Menu Icons ====*/
+            > a::before {
+                top: -1px;
+                content: '';
+                width: 1.5em;
+                height: 1.5em;
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                background-size: 100% auto;
+                background-position: center;
+                background-repeat: no-repeat;
+                margin-#{$direction-end}: 5px;
             }
-            &:last-child:not(.px-item-active) { margin-bottom: 5px; }
+            &:nth-child(1) > a::before {background-image: url('assets/img/px-logo/pds-icon.svg');}
+            &:nth-child(2) > a::before {background-image: url('assets/img/px-logo/px-blocks-icon.svg');}
+            &:nth-child(3) > a::before {background-image: url('assets/img/px-logo/phenix-icon.svg');}
         }
     }
 
     /*==== Docs Menu ====*/
-    .docs-menu {
-        padding: 15px;
+    .px-navigation {
+        /*==== Options ====*/
+        --height : 28px;
+        --background-hvr: transparent;
+        --font-weight: var(--medium-weight);
+        /*==== Custom CSS ====*/
+        padding: 10px;
         /*==== Direct Items ====*/
-        > li {
-            font-size: 14px;
-            line-height: 28px;
-            font-weight: var(--medium-weight);
-            padding: 0 10px;
-            /*==== Links ====*/
+        > ul > li {
+            margin-bottom: 0;
+            /*==== Dropdown Icons ====*/
             > a::before {
-                content: '\f07b';
-                font-family: var(--icons-font);
-                margin-right: 7px;
-                font-weight: 400;
+                float: none;
                 font-size: 1.1em;
+                margin-#{$direction-end}: 7px;
             }
             /*==== Submenus ====*/
-            ul {
-                display: none;
-                font-size: 14px;
-                line-height: 25px;
-                color: var(--gray-color);
+            .submenu {
+                --height : 28px;
+                --color-hvr : var(--dark-color);
                 font-weight: normal;
-                margin-left: 25px;
-                margin-bottom: 5px;
-                .px-item-active,li:hover {color: var(--dark-color);}
-                @include xlarge() {margin-left: 30px;}
+                padding-top: 0!important;
+                padding-bottom: 0!important;
+                margin-#{$direction-start}: 20px;
             }
             /*==== Active ====*/
             &.px-item-active {
                 color: var(--primary-color);
-                .submenu {display: block!important;}
                 > a::before {
                     content: '\f07c';
                     font-weight: 600;
@@ -239,31 +135,35 @@ html {line-height: 1.5;}
     };
 }
 
+@include large() {
+    .megamenu-example > ul > li {padding-top: 6px;padding-bottom: 6px;}
+};
+
 /*==== Page Secitons ====*/
 .on-page-menu {
-    background-color: #fcfcfc;
-    padding: 15px 20px;
     overflow-y: auto;
+    padding: 15px 20px;
     @extend %sticky-element;
+    background-color: #fcfcfc;
     /*==== Size ====*/
     @include large() {height: calc(100vh - #{$header-height})};
 
     /*==== Title ====*/
     h3 {
-        font-weight: var(--medium-weight);
-        font-size: 14px;
         line-height: 1;
+        font-size: 14px;
         margin-bottom: 5px;
+        font-weight: var(--medium-weight);
     }
     /*==== Submenus ====*/
     ul {
-        @extend %reset-list;
         display: block;
-        padding-left: 5px;
         font-size: 14px;
         line-height: 1.3;
+        padding-#{$direction-start}: 5px;
+        @extend %reset-list;
         color: var(--gray-color);
-        &.scrollspy-menu {margin-left: 5px;}
+        &.scrollspy-menu {margin-#{$direction-start}: 5px;}
         /*==== Links ====*/
         a {
             color: inherit;
@@ -290,11 +190,11 @@ html {line-height: 1.5;}
     //====> Space Fix <====//
     @include large() {padding: 30px!important;}
     .docs-list {
-        margin-right: 25px;
-        margin-left: 25px;
+        margin-#{$direction-end}: 25px;
+        margin-#{$direction-start}: 25px;
         margin-top: 0;
-        padding-left: 0;
-        padding-right: 0;
+        padding-#{$direction-start}: 0;
+        padding-#{$direction-end}: 0;
         line-height: 1.4;
         li {margin-bottom: 5px;}
     }
@@ -412,7 +312,7 @@ html {line-height: 1.5;}
         &.enlighter-special{background-color: #191D40;}
     }
 
-    div.enlighter > div > div {padding-left: 0;}
+    div.enlighter > div > div {padding-#{$direction-start}: 0;}
 
     /*==== Toolbar ====*/
     .enlighter-toolbar {
@@ -531,23 +431,6 @@ html {line-height: 1.5;}
     }
 }
 
-/*==== Footer ====*/
-.content-footer {
-    display: block;
-    text-align: center;
-    background-color: #fcfcfc;
-    // margin: -15px -12px;
-    margin-top: auto;
-    font-size: 15px;
-    padding: 8px 15px;
-    // @include large() {
-    //     margin: -30px;
-    //     margin-top: auto;
-    // }
-}
-
-.post-card p {max-height: 84px;}
-
 /*==== Grid Example ====*/
 .grid-example {
     padding: 5px;
@@ -596,7 +479,7 @@ html {line-height: 1.5;}
     .slide-btn, .fade-btn, .ex-btn {
         @extend %inline-block;
         padding: 5px 10px;
-        margin-right: 5px;
+        margin-#{$direction-end}: 5px;
         margin-bottom: 8px;
         border-radius: 3px;
         background-color: var(--dark-color);
@@ -614,23 +497,6 @@ html {line-height: 1.5;}
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-    }
-}
-
-/*==== RTL ====*/
-body.rtl {
-    /*==== Navigator ====*/
-    .navigator-menu .control-wraper {
-        /*==== Controler ====*/
-        input {
-            padding-left: 15px;
-            padding-right: 50px;
-        }
-        /*==== Icon ====*/
-        &::before {
-            left: auto;
-            right: 12px;
-        }
     }
 }
 
@@ -667,10 +533,6 @@ body.rtl {
 /*===> Custom Font-Icon Example <===*/
 .px-breadcrumb.custom-icon {--divider-icon : '\f101';}
 
-@include large() {
-    .megamenu-example > ul > li {padding-top: 6px;padding-bottom: 6px;}
-};
-
 /*==== Make the Current Active Slide More Visible then other Thumbnails ====*/
 #thumbnails-example .px-item {transition: opacity 300ms linear;}
 #thumbnails-example .px-item:not(.is-active) {opacity: 0.35;}
@@ -687,7 +549,11 @@ body.rtl {
     }
 }
 
-/*==== Ladning Page ====*/
+/*==== Landing Page ====*/
+.hero-section.position-rv {
+    > .container, > .container-xl {position: static;}
+}
+
 .px-primary-shadow {text-shadow: 3px 3px 0 rgba(13, 150, 249, 0.33);}
 .px-tx-shadow {text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);}
 
