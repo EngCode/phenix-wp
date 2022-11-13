@@ -95,9 +95,9 @@ $header-size: 60px;
                 background-repeat: no-repeat;
                 margin-#{$direction-end}: 5px;
             }
-            &:nth-child(1) > a::before {background-image: url('../img/px-logo/pds-icon.svg');}
-            &:nth-child(2) > a::before {background-image: url('../img/px-logo/px-blocks-icon.svg');}
-            &:nth-child(3) > a::before {background-image: url('../img/px-logo/phenix-icon.svg');}
+            &:nth-child(1) > a::before {background-image: url('assets/img/px-logo/pds-icon.svg');}
+            &:nth-child(2) > a::before {background-image: url('assets/img/px-logo/px-blocks-icon.svg');}
+            &:nth-child(3) > a::before {background-image: url('assets/img/px-logo/phenix-icon.svg');}
         }
     }
 
