@@ -5,6 +5,7 @@ $header-size: 60px;
     top: $header-size;
     position: sticky;
     position: -webkit-sticky;
+    @include small('down') {top: 55px};
 }
 
 /*==== Main Header ====*/
@@ -51,6 +52,11 @@ $header-size: 60px;
                 height: 40px;
                 font-size: 14px;
             }
+
+            @include small('down') {
+                background-color: #fff;
+                border: 1px solid var(--primary-offwhite);
+            };
         }
         /*==== Icon ====*/
         &::before {
@@ -137,12 +143,9 @@ $header-size: 60px;
     /*==== Responsive ====*/
     @include medium('down') {
         background-color: var(--primary-color);
-        .menus-wraper {
-            padding-top: 15px;
-            padding-bottom: 30px;
-            background-color: #fff;
+        .px-navigation {
             overflow-y: scroll;
-            max-height: calc(100vh - (60px + 64px));
+            max-height: calc(100vh - 115px);
         }
     };
 }
@@ -200,11 +203,13 @@ $header-size: 60px;
 /*==== Content Side ====*/
 .content-side {
     padding-top: 20px;
-    padding-bottom: 15px;
     background-color: var(--primary-offwhite);
     background-image: linear-gradient(rgba(#FFF, 0.7), rgba(#FFF, 0.7));
     //====> Space Fix <====//
-    @include large() {padding: 30px!important;}
+    @include large() {
+        padding: 30px!important;
+        padding-bottom: 0!important;
+    }
     .docs-list {
         margin-#{$direction-end}: 25px;
         margin-#{$direction-start}: 25px;

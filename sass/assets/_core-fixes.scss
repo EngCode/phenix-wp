@@ -49,4 +49,9 @@ body>.is-root-container>.wp-block-template-part>.wp-block-cover,
     padding-left: var(--wp--custom--spacing--outer);
 }
 
-#wpadminbar + .wp-site-blocks {padding-top: 22px;}
+@include large() {
+    #wpadminbar + .wp-site-blocks {padding-top: 22px;}
+};
+
+//====> Fix Tables Head <====//
+.wp-block-table thead {border-bottom: 0 none;}

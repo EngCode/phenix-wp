@@ -13,5 +13,5 @@
         <input type="text" name="s" placeholder="<?php echo px__('Search Docs', 'phenix'); ?>">
     </div>
     <!-- Menu Toggles -->
-    <a href="javascript:void(0);" class="fas fa-bars hidden-lg-up menu-toggle btn square dark ms-10 small" data-id="main-menu"></a>
+    <a href="javascript:void(0);" class="fas fa-bars hidden-lg-up menu-toggle btn radius-height square dark ms-10 small" data-id="design-docs"></a>
 </form>
