@@ -34,9 +34,9 @@ if (!function_exists('phenix_support')) :
 
 		//====> Editor Styles <====//
         if (is_rtl()) {
-            add_editor_style('assets/css/style-rtl.css');
+            add_editor_style('style-rtl.css');
         } else {
-            add_editor_style('assets/css/style.css');
+            add_editor_style('style.css');
         }
 
 		//====> Translation Support <====//
@@ -67,9 +67,9 @@ if (!function_exists('theme_style')) :
     function theme_style () {
         //====> Theme Style.css <====//
         if (!is_rtl()) :
-        wp_enqueue_style('theme-style', get_template_directory_uri() . '/assets/css/style.css');
+        wp_enqueue_style('theme-style', get_template_directory_uri() . '/style.css');
         else :
-        wp_enqueue_style('theme-style', get_template_directory_uri() . '/assets/css/style-rtl.css');
+        wp_enqueue_style('theme-style', get_template_directory_uri() . '/style-rtl.css');
         endif;
     }
 
