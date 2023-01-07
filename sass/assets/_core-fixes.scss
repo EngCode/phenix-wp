@@ -55,3 +55,10 @@ body>.is-root-container>.wp-block-template-part>.wp-block-cover,
 
 //====> Fix Tables Head <====//
 .wp-block-table thead {border-bottom: 0 none;}
+
+/*==== PDS Identity ====*/
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
+    background-image: url('../img/ap-icon.svg');
+    background-size: 100% auto;
+    background-position: center;
+}
