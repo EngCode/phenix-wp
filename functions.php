@@ -82,7 +82,7 @@ if (!function_exists('pds_theme_script')) :
         wp_enqueue_script('pds-script', get_template_directory_uri().'/assets/js/style.js', 'phenix' , NULL , true);
     }
 
-    //===> Include Phenix Core in the Plguin Page <===//
+    //===> Include Phenix Core in the Plugin Page <===//
     add_action('wp_enqueue_scripts', 'pds_theme_script');
 endif;
 
