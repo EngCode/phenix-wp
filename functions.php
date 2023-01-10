@@ -31,6 +31,7 @@ if (!function_exists('phenix_support')) :
 		add_theme_support('wp-block-styles');
         add_theme_support('disable-layout-styles');
 		remove_theme_support('core-block-patterns');
+        add_theme_support('block-templates');
 
 		//====> Editor Styles <====//
         if (is_rtl()) {
